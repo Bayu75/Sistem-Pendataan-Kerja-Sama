@@ -6,8 +6,8 @@ Route::get('/homePage', function () {
     return view('homePage');
 });
 
-Route::get('/kerjaSama', function () {
-    return view('kerjaSama');
+Route::get('/jabatan', function () {
+    return view('jabatan');
 });
 
 Route::get('/mitra', function () {
