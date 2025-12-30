@@ -22,4 +22,7 @@ Route::get('/kontak', function () {
     return view('kontak');
 });
 
+Route::get('/loginAdmin', function () {
+    return view('loginAdmin');
+});
 
