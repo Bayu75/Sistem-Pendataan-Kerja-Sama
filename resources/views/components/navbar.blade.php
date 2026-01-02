@@ -11,9 +11,10 @@
         <ul class="flex text-sm font-medium text-gray-700">
             <li><a class="{{ request()->is('homePage') ? 'bg-[#000000]/25 text-black' : 'text-black hover:bg-[#000000]/25'}} px-9 py-8" href="/homePage">Beranda</a></li>
             <li><a class="{{ request()->is('jabatan') ? 'bg-[#000000]/25 text-black' : 'text-black hover:bg-[#000000]/25'}} px-9 py-8" href="/jabatan">Jabatan</a></li>
+            <li><a class="{{ request()->is('templateSurat') ? 'bg-[#000000]/25 text-black' : 'text-black hover:bg-[#000000]/25'}} px-9 py-8" href="/templateSurat">Template Surat</a></li>
             <li><a class="{{ request()->is('mitra') ? 'bg-[#000000]/25 text-black' : 'text-black hover:bg-[#000000]/25'}} px-9 py-8" href="/mitra">Mitra</a></li>
             <li><a class="{{ request()->is('informasi') ? 'bg-[#000000]/25 text-black' : 'text-black hover:bg-[#000000]/25'}} px-9 py-8" href="/informasi">Informasi</a></li>
-            <li><a class="{{ request()->is('kontak') ? 'bg-[#000000]/25 text-black' : 'text-black hover:bg-[#000000]/25'}} px-9 py-8" href="/kontak">Kontak</a></li>
+
         </ul>
     </nav>
 </header>

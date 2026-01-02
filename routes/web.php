@@ -10,6 +10,10 @@ Route::get('/jabatan', function () {
     return view('jabatan');
 });
 
+Route::get('/templateSurat', function () {
+    return view('templateSurat');
+});
+
 Route::get('/mitra', function () {
     return view('mitra');
 });
