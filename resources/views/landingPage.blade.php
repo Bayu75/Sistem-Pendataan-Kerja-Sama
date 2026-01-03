@@ -38,12 +38,12 @@
 
             <div class="stats-card">
                 <div class="stat-item">
-                    <h2>5</h2>
+                    <h2>{{ $internal }}</h2>
                     <p>Kerja Sama Internal</p>
                 </div>
                 <div class="divider"></div>
                 <div class="stat-item">
-                    <h2>4</h2>
+                    <h2>{{ $eksternal }}</h2>
                     <p>Kerja Sama Eksternal</p>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <div class="icon-circle blue">
                         <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>4</h3>
+                    <h3>{{ $eksternal }}</h3>
                     <p class="label">Kerja Sama Eksternal</p>
                     <a href="#">Lihat Selengkapnya</a>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="icon-circle green">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h3>5</h3>
+                    <h3>{{ $internal }}</h3>
                     <p class="label">Kerja Sama Internal</p>
                     <a href="#">Lihat Selengkapnya</a>
                 </div>
@@ -71,7 +71,7 @@
                     <div class="icon-circle red">
                         <i class="fas fa-handshake-slash"></i>
                     </div>
-                    <h3>0</h3>
+                    <h3>{{ $akanBerakhir }}</h3>
                     <p class="label">Kerja Sama Akan Berakhir</p>
                     <a href="#">Lihat Selengkapnya</a>
                 </div>

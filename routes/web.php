@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LandingPageController;
+
 
 Route::get('/homePage', function () {
     return view('homePage');
@@ -10,6 +12,9 @@ Route::get('/homePage', function () {
 Route::get('/jabatan', function () {
     return view('jabatan');
 });
+
+Route::get('/landingPage', [LandingPageController::class, 'index'])
+    ->name('landingPage');
 
 Route::get('/templateSurat', function () {
     return view('templateSurat');
