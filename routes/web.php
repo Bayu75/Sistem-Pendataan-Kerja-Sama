@@ -3,11 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\HomePageController;
 
-
-Route::get('/homePage', function () {
-    return view('homePage');
-});
+Route::get('/homePage', [HomePageController::class, 'index'])
+    ->name('homePage');
 
 Route::get('/jabatan', function () {
     return view('jabatan');

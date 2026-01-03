@@ -56,7 +56,7 @@
         <div class="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-5 text-center">
             <div class="bg-white rounded-xl shadow-xl flex w-full max-w-6xl p-12 mb-16 border-2 border-black">
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">118</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $mouInternal }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">MoU</p>
                     <p class="text-sm font-bold">Kerja Sama Internal</p>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="w-px bg-gray-300 mx-4"></div>
 
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">136</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $moaEksternal }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">MoA</p>
                     <p class="text-sm font-bold">Kerja Sama Eksternal</p>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="w-px bg-gray-300 mx-4"></div>
 
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">102</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $iaEksternal }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">IA</p>
                     <p class="text-sm font-bold">Kerja Sama Eksternal</p>
                 </div>
@@ -83,14 +83,14 @@
                 <div class="flex justify-evenly gap-25 text-center">
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-cyan-400 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">4</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $kerjasamaEksternal }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kerja Sama Eksternal</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
 
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-lime-400 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">5</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $kerjasamaInternal }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kerja Sama Internal</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
@@ -99,21 +99,21 @@
                 <div class="flex justify-evenly gap-32 text-center">
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">331</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $aktif }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kerja Sama Berlaku</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
 
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">56</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $mendekatiKadaluarsa }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Akan Kadaluarsa</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
 
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">407</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $kadaluarsa }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kadaluarsa</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
