@@ -120,10 +120,144 @@
                 </div>
             </div>
 
-            <div
-                class="flex justify-center items-center bg-white border-2 border-black shadow-xl rounded-xl shadow-lg mb-16 p-12 w-full max-w-7xl h-[500px]">
-                <h1 class="font-bold">NANTI DI SINI TAMBAHIN GRAFIK</h1>
-            </div>
+			<div
+				class="flex justify-center items-center bg-white border-2 border-black shadow-xl rounded-xl shadow-lg mb-16 p-12 w-full max-w-7xl h-[500px]">
+
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full h-full">
+					<!-- DONUT -->
+					<div class="flex flex-col justify-center items-center">
+						<h2 class="font-bold text-lg mb-4">Jumlah Dokumen per Jenis</h2>
+						<canvas id="donutChart" class="max-h-[300px]"></canvas>
+					</div>
+
+					<!-- BAR -->
+					<div class="flex flex-col justify-center items-center">
+						<h2 class="font-bold text-lg mb-4">Jumlah Dokumen per Status</h2>
+						<canvas id="barChart" class="max-h-[300px]"></canvas>
+					</div>
+				</div>
+
+				<!-- SCRIPT -->
+				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+				<script>
+					Chart.register(ChartDataLabels);
+
+					/* DATA DARI CONTROLLER */
+					const jenisLabels = {!! json_encode($grafikJenisDokumen->keys()) !!};
+					const jenisData   = {!! json_encode($grafikJenisDokumen->values()) !!};
+
+					const statusLabels = {!! json_encode($grafikStatusDokumen->keys()) !!};
+					const statusData   = {!! json_encode($grafikStatusDokumen->values()) !!};
+
+					/* TOTAL KERJA SAMA */
+					const totalKerjasama = jenisData.reduce((a, b) => a + b, 0);
+
+					/* PLUGIN TEXT TENGAH DONUT */
+					const centerTextPlugin = {
+						id: 'centerText',
+						beforeDraw(chart) {
+							const { ctx, width, height } = chart;
+							ctx.restore();
+
+							const fontSize = (height / 150).toFixed(2);
+							ctx.font = `bold ${fontSize}em Poppins`;
+							ctx.textBaseline = 'middle';
+							ctx.fillStyle = '#000';
+
+							const text = totalKerjasama;
+							const textX = Math.round((width - ctx.measureText(text).width) / 2);
+							const textY = height / 2;
+
+							ctx.fillText(text, textX, textY - 10);
+
+							ctx.font = 'bold 14px Poppins';
+							ctx.fillText('Total', width / 2 - 18, textY + 15);
+
+							ctx.save();
+						}
+					};
+
+					/* DONUT CHART */
+					new Chart(document.getElementById('donutChart'), {
+						type: 'doughnut',
+						plugins: [centerTextPlugin],
+						data: {
+							labels: jenisLabels,
+							datasets: [{
+								data: jenisData,
+								backgroundColor: [
+									'#22c55e',
+									'#3b82f6',
+									'#f97316',
+									'#a855f7'
+								],
+								borderWidth: 2
+							}]
+						},
+						options: {
+							responsive: true,
+							cutout: '65%',
+							plugins: {
+								legend: {
+									position: 'bottom'
+								},
+								datalabels: {
+									color: '#fff',
+									font: {
+										weight: 'bold',
+										size: 16
+									},
+									formatter: (value) => value
+								}
+							}
+						}
+					});
+
+					/* BAR CHART */
+					new Chart(document.getElementById('barChart'), {
+						type: 'bar',
+						data: {
+							labels: statusLabels,
+							datasets: [{
+								data: statusData,
+								backgroundColor: [
+									'#22c55e',
+									'#facc15',
+									'#ef4444'
+								]
+							}]
+						},
+						options: {
+							responsive: true,
+							plugins: {
+								legend: { display: false },
+								datalabels: {
+									anchor: 'end',
+									align: 'top',
+									color: '#000',
+									font: {
+										weight: 'bold',
+										size: 14
+									},
+									formatter: (value) => value
+								}
+							},
+							scales: {
+								y: {
+									beginAtZero: false,
+									ticks: {
+										callback: function(value) {
+											return statusData.includes(value) ? value : '';
+										}
+									}
+								}
+							}
+						}
+					});
+				</script>
+			</div>
 
             {{-- tabel pertama --}}
             <div class="flex flex-col justify-center items-center gap-4 mb-10 p-12 w-full max-w-7xl">

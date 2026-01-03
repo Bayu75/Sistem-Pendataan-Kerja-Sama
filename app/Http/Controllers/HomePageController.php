@@ -63,6 +63,15 @@ class HomePageController extends Controller
             ->orderBy('v.id', 'asc')
             ->get();
 
+        // DATA UNTUK GRAFIK 
+        $grafikJenisDokumen = DB::table('identitas_mitra')
+            ->select('jenis_dokumen', DB::raw('count(*) as total'))
+            ->groupBy('jenis_dokumen')
+            ->pluck('total', 'jenis_dokumen'); 
+
+        $grafikStatusDokumen = DB::table('view_status_dokumen')
+            ->pluck('jumlah', 'status_dokumen');
+
         return view('homePage', compact(
             'mouInternal',
             'moaEksternal',
@@ -72,7 +81,9 @@ class HomePageController extends Controller
             'aktif',
             'mendekatiKadaluarsa',
             'kadaluarsa',
-            'dokumen'
+            'dokumen',
+            'grafikJenisDokumen',
+            'grafikStatusDokumen'
         ));
     }
 }
