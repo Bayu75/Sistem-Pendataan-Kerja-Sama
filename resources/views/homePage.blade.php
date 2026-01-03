@@ -148,15 +148,21 @@
 
                     <!-- Body -->
                     <tbody>
+                        @forelse ($dokumen as $item)
                         <tr class="text-center">
-                            <td class="border border-gray-500 px-3 py-2">1</td>
-                            <td class="border border-gray-500 px-3 py-2">IA</td>
-                            <td class="border border-gray-500 px-3 py-2 text-left">Implementation Agreement on Adjunct Professor: Webinar Series</td>
-                            <td class="border border-gray-500 px-3 py-2">10<br>Desember<br>2025</td>
-                            <td class="border border-gray-500 px-3 py-2">10<br>Januari<br>2026</td>
-                            <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">Aktif</span></td>
+                            <td class="border border-gray-500 px-3 py-2">{{ $item->id }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ $item->jenis_dokumen }}</td>
+                            <td class="border border-gray-500 px-3 py-2 text-left">{{ $item->nama_kerjasama }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->waktu_masuk)->translatedFormat('d F Y') }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->tgl_selesai)->translatedFormat('d F Y') }}</td>
+                            <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">{{ $item->status_dokumen }}</span></td>
                             <td class="border border-gray-500 px-3 py-2"><button class="bg-sky-400 text-white px-3 py-1 rounded-md">☰</button></td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center">Data belum tersedia</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

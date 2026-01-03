@@ -49,6 +49,20 @@ class HomePageController extends Controller
             ->where('status_dokumen', 'Kadaluarsa')
             ->value('jumlah') ?? 0;
 
+        $dokumen = DB::table('view_detail_status_mitra as v')
+            ->join('identitas_mitra as im', 'v.id', '=', 'im.id')
+            ->join('kerjasama as k', 'v.id', '=', 'k.id')
+            ->select(
+                'v.id',
+                'im.jenis_dokumen',
+                'v.nama_kerjasama',
+                'k.waktu_masuk',
+                'v.tgl_selesai',
+                'v.status_dokumen'
+                )
+            ->orderBy('v.id', 'asc')
+            ->get();
+
         return view('homePage', compact(
             'mouInternal',
             'moaEksternal',
@@ -57,7 +71,8 @@ class HomePageController extends Controller
             'kerjasamaEksternal',
             'aktif',
             'mendekatiKadaluarsa',
-            'kadaluarsa'
+            'kadaluarsa',
+            'dokumen'
         ));
     }
 }
