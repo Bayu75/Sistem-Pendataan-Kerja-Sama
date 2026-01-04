@@ -27,8 +27,8 @@
 
     <x-navbar></x-navbar>
 
-    <div class="flex items-center justify-center w-full pt-20 mb-20">
-        <img src="../img/jabatan.png" alt="" width="1400px">
+    <div class="flex items-center justify-center w-full  mb-20">
+        <img src="../img/jabatan.jpg" alt="" width="2000px">
     </div>
 
     <footer class="bg-gray-100 border-t mt-auto">

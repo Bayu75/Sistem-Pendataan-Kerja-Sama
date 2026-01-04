@@ -31,6 +31,21 @@ Route::get('/kontak', function () {
     return view('kontak');
 });
 
-Route::get('/loginAdmin', [AuthController::class, 'showLogin'])->name('loginAdmin');
-Route::post('/loginAdmin', [AuthController::class, 'login']);
-Route::get('/logoutAdmin', [AuthController::class, 'logout'])->name('logoutAdmin');
+
+Route::get('/loginAdmin', function () {
+    return view('loginAdmin');
+});
+
+Route::get('/dashboardAdmin', function () {
+    return view('Admin/dashboardAdmin');
+});
+
+Route::get('/managementData', function () {
+    return view('Admin/managementData');
+});
+
+Route::get('/tambahData', function () {
+    return view('Admin/tambahData');
+});
+
+>>>>>>> origin/dev-bayu
