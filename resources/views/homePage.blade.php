@@ -56,25 +56,25 @@
         <div class="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-5 text-center">
             <div class="bg-white rounded-xl shadow-xl flex w-full max-w-6xl p-12 mb-16 border-2 border-black">
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">{{ $mouInternal }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $mou }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">MoU</p>
-                    <p class="text-sm font-bold">Kerja Sama Internal</p>
+                    <p class="text-sm font-bold">Memorandum of Understanding</p>
                 </div>
 
                 <div class="w-px bg-gray-300 mx-4"></div>
 
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">{{ $moaEksternal }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $moa }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">MoA</p>
-                    <p class="text-sm font-bold">Kerja Sama Eksternal</p>
+                    <p class="text-sm font-bold">Memorandum of Agreement</p>
                 </div>
 
                 <div class="w-px bg-gray-300 mx-4"></div>
 
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">{{ $iaEksternal }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $ia }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">IA</p>
-                    <p class="text-sm font-bold">Kerja Sama Eksternal</p>
+                    <p class="text-sm font-bold">Implementation Arrangement</p>
                 </div>
             </div>
 

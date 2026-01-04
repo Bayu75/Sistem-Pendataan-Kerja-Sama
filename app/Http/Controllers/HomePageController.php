@@ -18,22 +18,16 @@ class HomePageController extends Controller
             ->count();
 
         // MoU / MoA / IA (identitas_mitra yang termasuk Kerjasama Internal / Eksternal)
-        $mouInternal = DB::table('identitas_mitra')
-            ->join('kerjasama', 'identitas_mitra.id', '=', 'kerjasama.id')
-            ->where('identitas_mitra.jenis_dokumen', 'MoU')
-            ->where('kerjasama.jenis_kerjasama', 'Internal')   
+        $mou = DB::table('identitas_mitra')
+            ->where('jenis_dokumen', 'MoU') 
             ->count();
 
-        $moaEksternal = DB::table('identitas_mitra')
-            ->join('kerjasama', 'identitas_mitra.id', '=', 'kerjasama.id')
-            ->where('identitas_mitra.jenis_dokumen', 'MoA')
-            ->where('kerjasama.jenis_kerjasama', 'Eksternal')
+        $moa = DB::table('identitas_mitra')
+            ->where('jenis_dokumen', 'MoA')
             ->count();
 
-        $iaEksternal = DB::table('identitas_mitra')
-            ->join('kerjasama', 'identitas_mitra.id', '=', 'kerjasama.id')
-            ->where('identitas_mitra.jenis_dokumen', 'IA')
-            ->where('kerjasama.jenis_kerjasama', 'Eksternal')
+        $ia = DB::table('identitas_mitra')
+            ->where('jenis_dokumen', 'IA')
             ->count();
 
         // Status Dokumen (VIEW)
@@ -73,9 +67,9 @@ class HomePageController extends Controller
             ->pluck('jumlah', 'status_dokumen');
 
         return view('homePage', compact(
-            'mouInternal',
-            'moaEksternal',
-            'iaEksternal',
+            'mou',
+            'moa',
+            'ia',
             'kerjasamaInternal',
             'kerjasamaEksternal',
             'aktif',
