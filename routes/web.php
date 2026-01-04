@@ -7,6 +7,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MitraController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\MitraUserViewController;
 use App\Http\Controllers\ManagementDataController;
 
 
@@ -27,6 +28,9 @@ Route::get('/templateSurat', function () {
 Route::get('/mitra', function () {
     return view('mitra');
 });
+
+Route::get('/mitra', [MitraUserViewController::class, 'index'])->name('mitra.index');
+
 
 Route::get('/informasi', function () {
     return view('informasi');

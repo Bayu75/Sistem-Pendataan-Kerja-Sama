@@ -83,7 +83,7 @@
                     </div>
 
                     <div>
-                        <label class="font-semibold">Masa Berlaku</label>
+                        <label class="font-semibold">Masa Berlaku (Format: Bulan/Tanggal/Tahun)</label>
                         <input type="date" name="masa_berlaku" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                     </div>
 

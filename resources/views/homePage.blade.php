@@ -266,6 +266,29 @@
             </div>
 
             <div class="p-5 overflow-x-auto w-full mb-10">
+				<div class="p-5 overflow-x-auto w-full mb-10">
+
+					{{-- SEARCH & SHOW ENTRIES (TAMBAH DI SINI) --}}
+					<form method="GET" class="flex flex-wrap justify-between items-center mb-4 gap-4">
+						<div class="flex items-center gap-2">
+							<label class="text-sm font-semibold">Show</label>
+							<select name="perPage" onchange="this.form.submit()"
+								class="border border-gray-400 rounded px-2 py-1 text-sm">
+								@foreach ([10,20,50,100] as $size)
+									<option value="{{ $size }}" {{ request('perPage',10)==$size?'selected':'' }}>
+										{{ $size }}
+									</option>
+								@endforeach
+							</select>
+							<span class="text-sm font-semibold">entries</span>
+						</div>
+
+						<div>
+							<input type="text" name="search" value="{{ request('search') }}"
+								placeholder="Search..."
+								class="border border-gray-400 rounded px-3 py-1 text-sm w-60">
+						</div>
+					</form>
                 <table class="w-full border-collapse border border-gray-500 text-sm">
                     <!-- Header -->
                     <thead class="bg-gray-200 text-center font-semibold">
@@ -284,13 +307,19 @@
                     <tbody>
                         @forelse ($dokumen as $item)
                         <tr class="text-center">
-                            <td class="border border-gray-500 px-3 py-2">{{ $item->id }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ $dokumen->firstItem() + $loop->index }}</td>
                             <td class="border border-gray-500 px-3 py-2">{{ $item->jenis_dokumen }}</td>
                             <td class="border border-gray-500 px-3 py-2 text-left">{{ $item->nama_kerjasama }}</td>
                             <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->waktu_masuk)->translatedFormat('d F Y') }}</td>
                             <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->tgl_selesai)->translatedFormat('d F Y') }}</td>
-                            <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">{{ $item->status_dokumen }}</span></td>
-                            <td class="border border-gray-500 px-3 py-2"><button class="bg-sky-400 text-white px-3 py-1 rounded-md">☰</button></td>
+                            <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">{{ $item->status }}</span></td>
+                            <td class="border border-gray-500 px-3 py-2">
+                                <button
+                                    onclick='openModal(@json($item))'
+                                    class="bg-sky-400 text-white px-3 py-1 rounded-md hover:bg-sky-500">
+                                    ☰
+                                </button>                                
+                            </td>
                         </tr>
                         @empty
                         <tr>
@@ -299,6 +328,35 @@
                         @endforelse
                     </tbody>
                 </table>
+				{{-- PAGINATION (TAMBAH DI SINI) --}}
+				<div class="flex justify-center mt-6">
+					<nav class="inline-flex items-center gap-1 text-sm">
+
+						<a href="{{ $dokumen->url(1) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&laquo;</a>
+
+						<a href="{{ $dokumen->previousPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&lsaquo;</a>
+
+						@for ($i = 1; $i <= $dokumen->lastPage(); $i++)
+							@if ($i <= 2 || $i > $dokumen->lastPage()-2 || abs($i - $dokumen->currentPage()) <= 1)
+								<a href="{{ $dokumen->url($i) }}"
+									class="px-3 py-1 border rounded
+									{{ $dokumen->currentPage()==$i ? 'bg-sky-400 text-white' : 'hover:bg-gray-200' }}">
+									{{ $i }}
+								</a>
+							@elseif ($i == 3 || $i == $dokumen->lastPage()-2)
+								<span class="px-2">...</span>
+							@endif
+						@endfor
+
+						<a href="{{ $dokumen->nextPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&rsaquo;</a>
+
+						<a href="{{ $dokumen->url($dokumen->lastPage()) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&raquo;</a>
+					</nav>
+				</div>
             </div>
 
             {{-- tabel 2 --}}
@@ -486,6 +544,72 @@
             </div>
         </div>
     </section>
+	<!-- MODAL DETAIL DOKUMEN -->
+	<div id="detailModal" class="fixed inset-0 bg-black/50 hidden justify-center items-center z-50">
+		<div class="bg-white w-full max-w-xl rounded-xl shadow-xl p-6 relative">
+
+			<h2 class="text-xl font-bold text-center mb-4">
+				Rincian Informasi Mitra Kerja Sama
+			</h2>
+
+			<div id="modalContent" class="text-sm space-y-3"></div>
+
+			<div class="text-center mt-6">
+				<button onclick="closeModal()"
+					class="px-6 pyops py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+					Tutup
+				</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		function garis() {
+			return `<hr class="border-gray-300 my-2">`;
+		}
+
+		function openModal(data) {
+			const content = `
+				<div class="font-semibold text-center">${data.nama_kerjasama}</div>
+				${garis()}
+				<div><b>Nama:</b> ${data.nama_mitra}</div>
+				${garis()}
+				<div><b>Program Studi:</b> ${data.program_studi}</div>
+				${garis()}
+				<div><b>Judul Kerja Sama:</b> ${data.nama_kerjasama}</div>
+				${garis()}
+				<div><b>Jenis Dokumen:</b> ${data.jenis_dokumen}</div>
+				${garis()}
+				<div><b>PIC:</b> ${data.pic}</div>
+				${garis()}
+				<div><b>Tanggal Mulai:</b> ${data.waktu_masuk}</div>
+				${garis()}
+				<div><b>Tanggal Berakhir:</b> ${data.tgl_selesai}</div>
+				${garis()}
+				<div><b>Jenis Kerja Sama:</b> ${data.jenis_kerjasama}</div>
+				${garis()}
+				<div><b>Metode Pengiriman Notifikasi:</b> ${data.metode_pengiriman_notifikasi}</div>
+				${garis()}
+				<div><b>Email:</b> ${data.email_user}</div>
+				${garis()}
+				<div>
+					<b>Link Dokumen:</b>
+					<a href="/storage/${data.path}" target="_blank"
+					   class="text-blue-600 underline hover:text-blue-800">
+						Lihat Dokumen
+					</a>
+				</div>
+			`;
+
+			document.getElementById('modalContent').innerHTML = content;
+			document.getElementById('detailModal').classList.remove('hidden');
+			document.getElementById('detailModal').classList.add('flex');
+		}
+
+		function closeModal() {
+			document.getElementById('detailModal').classList.add('hidden');
+			document.getElementById('detailModal').classList.remove('flex');
+		}
+	</script>
 </body>
 
 </html>
