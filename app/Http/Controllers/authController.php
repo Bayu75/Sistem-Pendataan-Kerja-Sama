@@ -27,16 +27,19 @@ class AuthController extends Controller
 
         if ($admin) {
             Session::put('admin', $admin->uname);
-
             return redirect()->route('dashboardAdmin');
         }
 
         return back()->with('error', 'Username atau Password salah');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Session::forget('admin');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('loginAdmin');
     }
 }

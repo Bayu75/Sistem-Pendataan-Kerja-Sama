@@ -26,9 +26,12 @@
     </ul>
 
     {{-- LOGOUT --}}
-    <a href="#"
-        class="flex items-center justify-center gap-2 w-[237px] h-[50px] rounded-lg bg-[#263650]/60 hover:bg-[#4b6083]/60">
-        <img src="./img/logout.png" class="w-9 h-9">
-        Logout
-    </a>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit"
+            class="flex items-center justify-center gap-2 w-[237px] h-[50px] rounded-lg bg-[#263650]/60 hover:bg-[#4b6083]/60">
+            <img src="./img/logout.png" class="w-9 h-9">
+            Logout
+        </button>
+    </form>
 </div>
