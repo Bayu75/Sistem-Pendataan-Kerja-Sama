@@ -61,7 +61,7 @@
                 </div>
 
                 <p class="text-sm font-semibold text-gray-700">
-                    Aktif • Mendekati Kadaluarsa • Kadaluarsa
+                    Aktif • Kadaluarsa • Mendekati Kadaluarsa
                 </p>
             </div>
 
