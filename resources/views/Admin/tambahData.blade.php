@@ -32,21 +32,45 @@
         <div class="flex flex-col justify-between gap-5 p-8 text-white w-full">
             <h1 class="text-4xl text-white font-extrabold tracking-widest mb-3">IDENTITAS MITRA</h1>
 
-            <div class="flex gap-12">
+            {{-- ERROR / SUCCESS --}}
+            @if ($errors->any())
+                <div class="bg-red-500 text-white p-4 rounded mb-4">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="bg-green-500 text-white p-4 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            {{-- FORM --}}
+            <form action="{{ route('mitra.store') }}" 
+                method="POST" 
+                enctype="multipart/form-data"
+                class="flex gap-12">
+
+                @csrf
                 <div class="flex-1 space-y-4 text-gray-700">
                     <div>
                         <label class="font-semibold">Nama Mitra</label>
-                        <input type="text" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <input type="text" name="nama_mitra" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                     </div>
 
                     <div>
                         <label class="font-semibold">Program Studi</label>
-                        <input type="text" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <input type="text" name="program_studi" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">Nama Kerja Sama</label>
+                        <input type="text" name="nama_kerjasama" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                     </div>
 
                     <div>
                         <label class="font-semibold">Jenis Dokumen</label>
-                        <select class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <select name="jenis_dokumen" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                             <option>MoU</option>
                             <option>MoA</option>
                             <option>IA</option>
@@ -55,17 +79,17 @@
 
                     <div>
                         <label class="font-semibold">PIC</label>
-                        <input type="text" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <input type="text" name="pic" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                     </div>
 
                     <div>
                         <label class="font-semibold">Masa Berlaku</label>
-                        <input type="date" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <input type="date" name="masa_berlaku" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                     </div>
 
                     <div>
-                        <label class="font-semibold">Status</label>
-                        <select class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <label class="font-semibold">Jenis Kerjasama</label>
+                        <select name="jenis_kerjasama" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                             <option>Internal</option>
                             <option>Eksternal</option>
                         </select>
@@ -73,7 +97,14 @@
 
                     <div>
                         <label class="font-semibold">Metode Pengiriman Notifikasi</label>
-                        <input type="text" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none">
+                        <select name="metode_pengiriman_notifikasi" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
+                            <option>Email</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">Masukkan Alamat Email</label>
+                        <input type="email" name="email_user" class="w-full px-4 py-3 rounded-lg bg-white/70 outline-none" required>
                     </div>
                 </div>
 
@@ -85,32 +116,51 @@
                         </h3>
 
                         <!-- AREA UPLOAD -->
-                        <label class="cursor-pointer h-[180px] rounded-xl border-2 border-dashed border-[#3a536d] bg-white/60 flex flex-col items-center justify-center gap-3 hover:bg-white/80 transition">
-                            <i class="fa-solid fa-file-arrow-up text-4xl text-[#3a536d]"></i>
-                            <p class="text-sm text-[#3a536d] font-semibold">
+                        <label id="uploadLabel" class="cursor-pointer h-[180px] rounded-xl border-2 border-dashed border-[#3a536d] bg-white/60 flex flex-col items-center justify-center gap-3 hover:bg-white/80 transition">
+                            <i id="uploadIcon" class="fa-solid fa-file-arrow-up text-4xl text-[#3a536d]"></i>
+                            <p id="uploadText" class="text-sm text-[#3a536d] font-semibold">
                                 Klik untuk upload dokumen
                             </p>
-
                             <p class="text-xs text-gray-500">
                                 PDF
                             </p>
-
-                            <input type="file" class="hidden" accept=".pdf,.doc,.docx,.jpg,.png">
+                            <input id="dokumen" type="file" name="dokumen" class="hidden" accept=".pdf" required>
                         </label>
 
                     </div>
 
-                    <div class="flex flex-col justify-end gap-4 mt-10">
-                        <button class="px-8 py-3 rounded-lg bg-[#3a536d] text-white font-bold hover:bg-[#4b6083]/60">
+                    <div class="flex flex-col justify-end gap-4 mt-10 w-full">
+                        <button type="submit" class="px-8 py-3 rounded-lg bg-[#3a536d] text-white font-bold hover:bg-[#4b6083]/60 w-full">
                             SIMPAN DATA
                         </button>
 
-                        <button class="px-8 py-3 rounded-lg bg-[#3a536d] text-white font-bold hover:bg-[#4b6083]/60">
+                        <a href="{{ route('dashboardAdmin') }}" class="px-8 py-3 rounded-lg bg-[#3a536d] text-white font-bold hover:bg-[#4b6083]/60 text-center block">
                             BATAL
-                        </button>
+                        </a>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+
+    <!-- SCRIPT PREVIEW NAMA FILE -->
+    <script>
+        const dokumenInput = document.getElementById('dokumen');
+        const uploadText = document.getElementById('uploadText');
+        const uploadIcon = document.getElementById('uploadIcon');
+
+        dokumenInput.addEventListener('change', function() {
+            if(this.files && this.files.length > 0) {
+                const fileName = this.files[0].name;
+
+                // Ganti ikon menjadi teks nama dokumen
+                uploadText.textContent = fileName;
+                uploadIcon.style.display = 'none'; // sembunyikan ikon
+            } else {
+                uploadText.textContent = 'Klik untuk upload dokumen';
+                uploadIcon.style.display = 'block';
+            }
+        });
+    </script>
 </body>
+</html>

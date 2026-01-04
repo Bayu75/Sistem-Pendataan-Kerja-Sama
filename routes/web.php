@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\MitraController;
+use Illuminate\Support\Facades\Mail;
+
 
 Route::get('/homePage', [HomePageController::class, 'index'])
     ->name('homePage');
@@ -47,5 +50,11 @@ Route::middleware('admin.auth')->group(function () {
 
     Route::get('/tambahData', function () {
         return view('Admin.tambahData');
-    });
-});
+    })->name('tambahData');
+
+    Route::post('/tambahData', [MitraController::class, 'store'])->name('mitra.store');
+}
+);
+
+Route::post('/tambahData', [MitraController::class, 'store'])->name('mitra.store');
+
