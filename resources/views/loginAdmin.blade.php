@@ -53,24 +53,12 @@
                         required>
                 </div>
 
-                <!-- Checkbox -->
-                <div class="flex items-center gap-2 mt-4">
-                    <input type="checkbox" class="w-5 h-5 accent-white">
-                    <p>Remember me</p>
-                </div>
-
                 <!-- Button -->
                 <button type="submit"
                     class="mt-10 w-full h-[54px] bg-[#17304B]/70 rounded-xl text-2xl font-bold hover:bg-[#17304B] transition">
                     LOGIN
                 </button>
             </form>
-
-            <!-- Signup -->
-            <p class="mt-4 text-center">
-                Don't have an account?
-                <a href="#" class="underline font-semibold">Sign Up</a>
-            </p>
         </div>
 
         <!-- Image -->

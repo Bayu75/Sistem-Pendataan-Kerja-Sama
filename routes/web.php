@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MitraController;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\DashboardAdminController;
 
 
 Route::get('/homePage', [HomePageController::class, 'index'])
@@ -44,6 +45,11 @@ Route::middleware('admin.auth')->group(function () {
         return view('Admin.dashboardAdmin');
     })->name('dashboardAdmin');
 
+    // routes/web.php
+Route::get('/dashboardAdmin', [App\Http\Controllers\DashboardAdminController::class, 'index'])
+    ->name('dashboardAdmin');
+
+
     Route::get('/managementData', function () {
         return view('Admin.managementData');
     });
@@ -56,5 +62,4 @@ Route::middleware('admin.auth')->group(function () {
 }
 );
 
-Route::post('/tambahData', [MitraController::class, 'store'])->name('mitra.store');
 
