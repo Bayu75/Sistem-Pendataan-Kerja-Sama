@@ -26,3 +26,15 @@ Route::get('/loginAdmin', function () {
     return view('loginAdmin');
 });
 
+Route::get('/dashboardAdmin', function () {
+    return view('Admin/dashboardAdmin');
+});
+
+Route::get('/managementData', function () {
+    return view('Admin/managementData');
+});
+
+Route::get('/tambahData', function () {
+    return view('Admin/tambahData');
+});
+
