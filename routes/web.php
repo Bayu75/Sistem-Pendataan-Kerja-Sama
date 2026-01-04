@@ -32,20 +32,20 @@ Route::get('/kontak', function () {
 });
 
 
-Route::get('/loginAdmin', function () {
-    return view('loginAdmin');
-});
+Route::get('/loginAdmin', [AuthController::class, 'showLogin'])->name('loginAdmin');
+Route::post('/loginAdmin', [AuthController::class, 'login'])->name('loginAdmin.post');
+Route::get('/logoutAdmin', [AuthController::class, 'logout'])->name('logoutAdmin');
 
-Route::get('/dashboardAdmin', function () {
-    return view('Admin/dashboardAdmin');
-});
+Route::middleware('admin.auth')->group(function () {
+    Route::get('/dashboardAdmin', function () {
+        return view('Admin.dashboardAdmin');
+    })->name('dashboardAdmin');
 
-Route::get('/managementData', function () {
-    return view('Admin/managementData');
-});
+    Route::get('/managementData', function () {
+        return view('Admin.managementData');
+    });
 
-Route::get('/tambahData', function () {
-    return view('Admin/tambahData');
+    Route::get('/tambahData', function () {
+        return view('Admin.tambahData');
+    });
 });
-
->>>>>>> origin/dev-bayu

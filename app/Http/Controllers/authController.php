@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoginAdmin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -17,22 +17,26 @@ class AuthController extends Controller
     {
         $request->validate([
             'uname' => 'required',
-            'pass' => 'required'
+            'pass'  => 'required'
         ]);
 
-        $admin = LoginAdmin::where('uname', $request->uname)->first();
+        $admin = DB::table('login')
+            ->where('uname', $request->uname)
+            ->where('pass', $request->pass)
+            ->first();
 
-        if($admin && $admin->pass === $request->pass) {
+        if ($admin) {
             Session::put('admin', $admin->uname);
-            return view('Admin.DashboardAdmin');
+
+            return redirect()->route('dashboardAdmin');
         }
 
-        return back()->with('error', 'Username atau password salah');
+        return back()->with('error', 'Username atau Password salah');
     }
 
     public function logout()
     {
         Session::forget('admin');
-        return redirect('/loginAdmin');
+        return redirect()->route('loginAdmin');
     }
 }
