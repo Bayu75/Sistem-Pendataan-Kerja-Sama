@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\IdentitasMitra;
 use App\Models\Kerjasama;
+use App\Models\Dokumentasi;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifikasiKadaluarsa;
 use Carbon\Carbon;
@@ -23,12 +24,13 @@ class MitraController extends Controller
             'jenis_kerjasama' => 'required|string',
             'metode_pengiriman_notifikasi' => 'required|string',
             'email_user' => 'required|email',
-            'dokumen' => 'required|mimes:pdf|max:5120'
+            'dokumen' => 'required|mimes:pdf|max:5120',
+            'deskripsi' => 'nullable|string'
         ]);
 
         // Upload dokumen
         $path = null;
-        if($request->hasFile('dokumen')) {
+        if ($request->hasFile('dokumen')) {
             $file = $request->file('dokumen');
             $path = $file->store('dokumen', 'public');
         }
@@ -51,29 +53,49 @@ class MitraController extends Controller
             'jenis_kerjasama' => $request->jenis_kerjasama,
             'email_user' => $request->email_user,
             'tgl_selesai' => $request->masa_berlaku,
-            'status_notif_sent' => 'none'
+            'status_notif_sent' => 'none',
+            'deskripsi' => $request->deskripsi
         ]);
 
-		$today = Carbon::today();
-		$tglSelesai = Carbon::parse($request->masa_berlaku);
-        $h7 = $tglSelesai->copy()->subDays(7);
+// Ambil status dokumentasi terakhir jika ada
+$existingDokumentasi = Dokumentasi::where('nama_kerjasama', $request->nama_kerjasama)
+                        ->latest('id')
+                        ->first();
 
-        // H-7 / Mendekati kadaluarsa
-        if($today->gte($h7) && $today->lt($tglSelesai)) {
-            Mail::to($request->email_user)
-                ->send(new NotifikasiKadaluarsa($kerjasama, 'mendekati'));
-            $kerjasama->status_notif_sent = 'sent';
-            $kerjasama->save();
-        }
+$status = $existingDokumentasi ? $existingDokumentasi->status : 'pending';
 
-        // Kadaluarsa
-        if($today->gte($tglSelesai)) {
-            Mail::to($request->email_user)
-                ->send(new NotifikasiKadaluarsa($kerjasama, 'kadaluarsa'));
-            $kerjasama->status_notif_sent = 'expired';
-            $kerjasama->save();
-        }
+// Simpan ke tabel dokumentasi
+$dokumentasi = Dokumentasi::create([
+    'nama_kerjasama' => $kerjasama->nama_kerjasama, 
+    'tanggal' => $request->masa_berlaku,
+    'status' => $status, // acc/pending/ditolak
+    'deskripsi' => $request->deskripsi,
+]);
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan dan notifikasi email terkirim 7 hari sebelum kadaluarsa.');
+// ⚡ Hanya kirim email jika status dokumentasi ACC
+if ($status === 'acc') {
+
+    $today = Carbon::today();
+    $tglSelesai = Carbon::parse($request->masa_berlaku);
+    $h600 = $tglSelesai->copy()->subDays(600);
+
+    // Notifikasi H-600 (mendekati kadaluarsa)
+    if ($today->gte($h600) && $today->lt($tglSelesai)) {
+        Mail::to($request->email_user)
+            ->send(new NotifikasiKadaluarsa($kerjasama, 'mendekati'));
+        $kerjasama->status_notif_sent = 'sent';
+        $kerjasama->save();
+    }
+
+    // Notifikasi kadaluarsa
+    if ($today->gte($tglSelesai)) {
+        Mail::to($request->email_user)
+            ->send(new NotifikasiKadaluarsa($kerjasama, 'kadaluarsa'));
+        $kerjasama->status_notif_sent = 'expired';
+        $kerjasama->save();
+    }
+}
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan. Status dokumentasi otomatis diambil dari dokumen terakhir atau pending.');
     }
 }

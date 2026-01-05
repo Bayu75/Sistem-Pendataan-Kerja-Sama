@@ -338,104 +338,95 @@
 				</div>
             </div>
 
-
-            <div class="max-w-7xl mx-auto px-6 py-12">
-                <div class="flex flex-col justify-center items-center gap-4 mb-10 p-12 w-full max-w-7xl">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="flex flex-col justify-center items-center gap-4 p-12 w-full max-w-7xl">
                     <h1 class="text-5xl font-bold">DOKUMENTASI DAN INFORMASI</h1>
                     <p class="text-xl font-semibold">Dokumentasi kegiatan terkait perjanjian kerja sama</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <article
-                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
-                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
-                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
-                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
-                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
-                            Diselenggarakan</h3>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+				@foreach ($dokumen as $item)
+				<article class="bg-gradient-to-b from-gray-200 to-gray-400 rounded-xl p-4 flex flex-col shadow-md">
+				    
+				    <img src="{{ asset('img/Artikel 1.png') }}" class="rounded-lg mb-2 h-40 object-cover">
 
-                        <!-- push button ke bawah -->
-                        <a href="#" class="mt-auto text-left">
-                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
-                        </a>
-                    </article>
+				    <p class="text-[15px] text-black mb-2">
+				        {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+				    </p>
 
-                    <article
-                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
-                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
-                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
-                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
-                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
-                            Diselenggarakan</h3>
+				    <h3 class="font-semibold text-xl mb-3 leading-snug">
+				        {{ $item->nama_kerjasama }}
+				    </h3>
 
-                        <!-- push button ke bawah -->
-                        <a href="#" class="mt-auto text-left">
-                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
-                        </a>
-                    </article>
+				    <button
+				        onclick="openModal({{ $item->id }})"
+				        class="mt-auto bg-sky-500 text-white text-lg px-3 py-1 rounded">
+				        Selengkapnya
+				    </button>
+				</article>
+				@endforeach
+				</div>
 
-                    <article
-                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
-                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
-                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
-                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
-                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
-                            Diselenggarakan</h3>
+				</div> <!-- penutup grid -->
 
-                        <!-- push button ke bawah -->
-                        <a href="#" class="mt-auto text-left">
-                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
-                        </a>
-                    </article>
+				{{-- TAMBAHKAN MODAL DI SINI --}}
+				@foreach ($dokumen as $item)
+				<div id="modal-{{ $item->id }}"
+						class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 
-                    <article
-                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
-                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
-                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
-                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
-                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
-                            Diselenggarakan</h3>
+						<div class="bg-white rounded-xl w-full max-w-2xl p-6 relative">
+								<button onclick="closeModal({{ $item->id }})"
+										class="absolute top-3 right-4 text-xl font-bold">&times;</button>
 
-                        <!-- push button ke bawah -->
-                        <a href="#" class="mt-auto text-left">
-                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
-                        </a>
-                    </article>
+								<h2 class="text-2xl font-bold mb-4">Detail Kerja Sama</h2>
 
-                    <article
-                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
-                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
-                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
-                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
-                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
-                            Diselenggarakan</h3>
+								<div class="space-y-4 text-sm text-gray-800">
+										<p>
+												<span class="font-semibold">Judul:</span><br>
+												{{ $item->nama_kerjasama }}
+										</p>
 
-                        <!-- push button ke bawah -->
-                        <a href="#" class="mt-auto text-left">
-                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
-                        </a>
-                    </article>
+										<p>
+												<span class="font-semibold">Deskripsi:</span><br>
+												{{ $item->deskripsi ?? 'Tidak ada deskripsi.' }}
+										</p>
+								</div>
 
-                    <article
-                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
-                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
-                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
-                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
-                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
-                            Diselenggarakan</h3>
+						</div>
+				</div>
+				@endforeach
 
-                        <!-- push button ke bawah -->
-                        <a href="#" class="mt-auto text-left">
-                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
-                        </a>
-                    </article>
+                
+                <div class="flex justify-center mt-6">
+					<nav class="inline-flex items-center gap-1 text-sm">
 
-                </div>
+						<a href="{{ $dokumen->url(1) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&laquo;</a>
 
-                <div class="text-right mt-6 text-sm text-blue-600">
-                    <a href="#">&gt;&gt; Selengkapnya</a>
-                </div>
-            </div>
+						<a href="{{ $dokumen->previousPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&lsaquo;</a>
+
+						@for ($i = 1; $i <= $dokumen->lastPage(); $i++)
+							@if ($i <= 2 || $i > $dokumen->lastPage()-2 || abs($i - $dokumen->currentPage()) <= 1)
+								<a href="{{ $dokumen->url($i) }}"
+									class="px-3 py-1 border rounded
+									{{ $dokumen->currentPage()==$i ? 'bg-sky-400 text-white' : 'hover:bg-gray-200' }}">
+									{{ $i }}
+								</a>
+							@elseif ($i == 3 || $i == $dokumen->lastPage()-2)
+								<span class="px-2">...</span>
+							@endif
+						@endfor
+
+						<a href="{{ $dokumen->nextPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&rsaquo;</a>
+
+						<a href="{{ $dokumen->url($dokumen->lastPage()) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&raquo;</a>
+					</nav>
+				</div>
+    </div>
+
     </section>
 
     <section class="bg-gradient-to-b from-transparent via-transparent to-[rgba(97,96,96)] opacity-100">
@@ -545,6 +536,15 @@
 			document.getElementById('detailModal').classList.remove('flex');
 		}
 	</script>
+        <script>
+    function openModal(id) {
+        document.getElementById('modal-' + id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+        document.getElementById('modal-' + id).classList.add('hidden');
+    }
+    </script>
+
 </body>
 
 </html>

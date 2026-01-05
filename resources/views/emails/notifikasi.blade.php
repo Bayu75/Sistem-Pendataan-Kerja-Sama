@@ -9,7 +9,7 @@
         @if($type === 'kadaluarsa')
             Kerja Sama Telah Kadaluarsa
         @else
-            Kerja Sama Mendekati Kadaluarsa
+            Kerja Sama Telah di Ditearima
         @endif
     </h2>
 
@@ -24,9 +24,9 @@
     </ul>
 
     @if($type === 'kadaluarsa')
-        <p>Kerja sama ini sudah kadaluarsa. Mohon diperbarui segera.</p>
+        <p>Mohon maaf kerja sama ini sudah kadaluarsa. Terima Kasih.</p>
     @else
-        <p>Kerja sama ini akan kadaluarsa dalam 7 hari. Mohon dicek.</p>
+        <p>Selamat pengajuan anda di acc, silahkan chat no ini: Gede(08504343)</p>
     @endif
 
     <p>Terima kasih.</p>

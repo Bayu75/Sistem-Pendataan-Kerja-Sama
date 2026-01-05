@@ -10,6 +10,11 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\MitraUserViewController;
 use App\Http\Controllers\ManagementDataController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\InformationController;
+use App\Http\Controllers\DataAdminController;
+
+
 
 
 Route::get('/homePage', [HomePageController::class, 'index'])
@@ -31,6 +36,11 @@ Route::get('/templateSurat', function () {
 Route::get('/formPengajuan', function () {
     return view('formPengajuan');
 })->name('pengajuan.form');;
+
+// **Form Pengajuan dengan MitraController**
+Route::get('/form-pengajuan', [MitraController::class, 'create'])->name('pengajuan.create');
+Route::post('/form-pengajuan', [MitraController::class, 'store'])->name('pengajuan.store');
+
 
 Route::get('/mitra', function () {
     return view('mitra');
@@ -72,17 +82,19 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/management-data/export/csv', [ManagementDataController::class, 'export'])
         ->name('management.export');
 
-    Route::get('/informationAdmin', function () {
-        return view('Admin.informationAdmin');
-    });
+    Route::get('/informationAdmin', [InformationController::class, 'index']);
+    Route::post(
+        '/informationAdmin/update-deskripsi',
+        [InformationController::class, 'updateDeskripsi']
+    )->name('admin.information.updateDeskripsi');    
+    Route::delete('/admin/information/{id}', [InformationController::class, 'destroy']);
     
-    Route::get('/pengajuan', function () {
-        return view('Admin.pengajuan');
-    });
+    Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.admin');
+    Route::post('/pengajuan/{id}/status', [PengajuanController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
-    Route::get('/data', function () {
-        return view('Admin.data');
-    });
+    Route::get('/data', [DataAdminController::class, 'index']);
+    Route::delete('/data/{id}', [DataAdminController::class, 'destroy'])
+    ->name('management.destroy');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     }

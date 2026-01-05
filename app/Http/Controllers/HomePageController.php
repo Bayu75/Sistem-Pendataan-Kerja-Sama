@@ -43,6 +43,7 @@ class HomePageController extends Controller
         $dokumen = DB::table('view_detail_status_mitra as v')
             ->join('identitas_mitra as im', 'v.id', '=', 'im.id')
             ->join('kerjasama as k', 'v.id', '=', 'k.id')
+            ->leftJoin('dokumentasi as d', 'v.id', '=', 'd.id')
 			->when($search, function ($query, $search) {
 				$query->whereRaw(
 					"v.nama_kerjasama COLLATE utf8mb4_unicode_ci LIKE ?",
@@ -71,9 +72,12 @@ class HomePageController extends Controller
                 'im.metode_pengiriman_notifikasi',
                 'v.nama_kerjasama',
                 'k.waktu_masuk',
+                'k.waktu_masuk as created_at',
                 'k.tgl_selesai',
-                'im.status'
+                'im.status',
+                'd.deskripsi'
             )
+            ->where('d.status', 'acc')
             ->orderBy('v.id', 'asc')
             ->paginate($perPage)
             ->withQueryString();
