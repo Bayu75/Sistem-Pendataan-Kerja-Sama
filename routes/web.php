@@ -72,11 +72,17 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/management-data/export/csv', [ManagementDataController::class, 'export'])
         ->name('management.export');
 
-    Route::get('/tambahData', function () {
-        return view('Admin.tambahData');
-    })->name('tambahData');
+    Route::get('/informationAdmin', function () {
+        return view('Admin.informationAdmin');
+    });
+    
+    Route::get('/pengajuan', function () {
+        return view('Admin.pengajuan');
+    });
 
-    Route::post('/tambahData', [MitraController::class, 'store'])->name('mitra.store');
+    Route::get('/data', function () {
+        return view('Admin.data');
+    });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     }
