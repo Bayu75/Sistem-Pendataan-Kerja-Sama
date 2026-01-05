@@ -9,10 +9,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\MitraUserViewController;
 use App\Http\Controllers\ManagementDataController;
+use App\Http\Controllers\InformasiController;
 
 
 Route::get('/homePage', [HomePageController::class, 'index'])
     ->name('homePage');
+
+Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
 
 Route::get('/jabatan', function () {
     return view('jabatan');
@@ -25,6 +28,10 @@ Route::get('/templateSurat', function () {
     return view('templateSurat');
 });
 
+Route::get('/formPengajuan', function () {
+    return view('formPengajuan');
+})->name('pengajuan.form');;
+
 Route::get('/mitra', function () {
     return view('mitra');
 });
@@ -32,9 +39,6 @@ Route::get('/mitra', function () {
 Route::get('/mitra', [MitraUserViewController::class, 'index'])->name('mitra.index');
 
 
-Route::get('/informasi', function () {
-    return view('informasi');
-});
 
 Route::get('/kontak', function () {
     return view('kontak');

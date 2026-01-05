@@ -12,8 +12,32 @@
 <body class="font-poppins bg-white pt-20">
 <x-navbar></x-navbar>
 
+<body class="font-poppins bg-white pt-20">
+<x-navbar></x-navbar>
+
 <div class="max-w-7xl mx-auto px-6 py-10">
-    <h1 class="text-4xl font-bold mb-6">Daftar Mitra Kerja Sama</h1>
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+        <h1 class="text-4xl font-bold">Daftar Mitra Kerja Sama</h1>
+        
+        <form action="{{ route('mitra.index') }}" method="GET" class="flex gap-2">
+            <input 
+                type="text" 
+                name="search" 
+                value="{{ $search }}" 
+                placeholder="Cari mitra atau dokumen..." 
+                class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            >
+            <button type="submit" class="bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition">
+                <i class="fa fa-search"></i> Cari
+            </button>
+            @if($search)
+                <a href="{{ route('mitra.index') }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">
+                    Reset
+                </a>
+            @endif
+        </form>
+    </div>
+
 
     @forelse($mitra as $item)
     <div class="bg-gray-100 rounded-lg shadow p-6 mb-6">
