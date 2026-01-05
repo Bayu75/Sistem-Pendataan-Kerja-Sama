@@ -265,7 +265,7 @@
                 <p class="text-xl font-semibold">Bagian ini menyediakan daftar dokumen kerja sama Fakultas MIPA Universitas Udayana</p>
             </div>
 
-            <div class="p-5 overflow-x-auto w-full mb-10">
+            <div id="tabelDokumen" class="p-5 overflow-x-auto w-full mb-10">
 				<div class="p-5 overflow-x-auto w-full mb-10">
 
 					{{-- SEARCH & SHOW ENTRIES (TAMBAH DI SINI) --}}
@@ -296,6 +296,7 @@
                             <th class="border border-gray-500 px-3 py-2">No</th>
                             <th class="border border-gray-500 px-3 py-2">Jenis<br>Dokumen</th>
                             <th class="border border-gray-500 px-3 py-2">Judul Kerja Sama</th>
+                            <th class="border border-gray-500 px-3 py-2">Jenis Kerja Sama</th>
                             <th class="border border-gray-500 px-3 py-2">Tanggal<br>Mulai</th>
                             <th class="border border-gray-500 px-3 py-2">Tanggal<br>Berakhir</th>
                             <th class="border border-gray-500 px-3 py-2">Status</th>
@@ -310,6 +311,7 @@
                             <td class="border border-gray-500 px-3 py-2">{{ $dokumen->firstItem() + $loop->index }}</td>
                             <td class="border border-gray-500 px-3 py-2">{{ $item->jenis_dokumen }}</td>
                             <td class="border border-gray-500 px-3 py-2 text-left">{{ $item->nama_kerjasama }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ $item->jenis_kerjasama }}</td>
                             <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->waktu_masuk)->translatedFormat('d F Y') }}</td>
                             <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->tgl_selesai)->translatedFormat('d F Y') }}</td>
                             <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">{{ $item->status }}</span></td>
@@ -326,6 +328,23 @@
                             <td colspan="7" class="text-center">Data belum tersedia</td>
                         </tr>
                         @endforelse
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Cek apakah ada query string search atau perPage
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const search = urlParams.get('search');
+                            const perPage = urlParams.get('perPage');
+
+                            if (search || perPage) {
+                                // Scroll ke tabel
+                                const tabel = document.getElementById('tabelDokumen');
+                                if(tabel) {
+                                    tabel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                            }
+                        });
+                        </script>
+
                     </tbody>
                 </table>
 				{{-- PAGINATION (TAMBAH DI SINI) --}}

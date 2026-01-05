@@ -55,7 +55,9 @@ class HomePageController extends Controller
 				->orWhereRaw(
 					"v.status_dokumen COLLATE utf8mb4_unicode_ci LIKE ?",
 					["%{$search}%"]
-				);
+				)
+
+                ->orWhereRaw("k.jenis_kerjasama COLLATE utf8mb4_unicode_ci LIKE ?", ["%{$search}%"]); 
             })
             ->select(
                 'v.id',

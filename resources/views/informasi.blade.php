@@ -26,7 +26,7 @@
 <body class="font-poppins bg-[#ffffff] h-[2000px] pt-20">
     
     <x-navbar></x-navbar>
-    <h1>halo nama saya dika</h1>
+    <h1> </h1>
 
 
         <section class="bg-gradient-to-b from-transparent via-transparent to-[rgba(97,96,96)] opacity-100">
