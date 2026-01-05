@@ -46,7 +46,9 @@
             <h1 class="text-white gap-3 sm:gap-4 lg:gap-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4" style="-webkit-text-stroke: 3px black">JALIN KERJA SAMA DENGAN KAMI</h1>
             <button class="flex items-center gap-3 text-white bg-[linear-gradient(30deg,#222222,#888686)] shadow-lg shadow-black/40 rounded-2xl px-10 py-5 mb-10">
                 <img src="../img/ajukan.png" alt="">
-                <p class="text-sm sm:text-2xl lg:text-3xl">Ajukan</p>
+                <a href="{{ route('pengajuan.form') }}">
+                    <p class="text-sm sm:text-2xl lg:text-3xl">Ajukan</p>
+                </a>
             </button>
         </div>
     </section>
@@ -75,48 +77,6 @@
                     <h2 class="text-5xl font-bold pb-2">{{ $ia }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">IA</p>
                     <p class="text-sm font-bold">Implementation Arrangement</p>
-                </div>
-            </div>
-
-            {{-- banyaknya kerja sama --}}
-            <div class="flex flex-col gap-10 bg-white mb-16 p-12 w-full max-w-7xl">
-                <div class="flex justify-evenly gap-25 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-full bg-cyan-400 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">{{ $kerjasamaEksternal }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
-                        <p class="text-sm font-semibold">Kerja Sama Eksternal</p>
-                        <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
-                    </div>
-
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-full bg-lime-400 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">{{ $kerjasamaInternal }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
-                        <p class="text-sm font-semibold">Kerja Sama Internal</p>
-                        <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-
-                <div class="flex justify-evenly gap-32 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">{{ $aktif }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
-                        <p class="text-sm font-semibold">Kerja Sama Berlaku</p>
-                        <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
-                    </div>
-
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">{{ $mendekatiKadaluarsa }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
-                        <p class="text-sm font-semibold">Akan Kadaluarsa</p>
-                        <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
-                    </div>
-
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">{{ $kadaluarsa }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
-                        <p class="text-sm font-semibold">Kadaluarsa</p>
-                        <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
-                    </div>
                 </div>
             </div>
 
@@ -260,7 +220,7 @@
 			</div>
 
             {{-- tabel pertama --}}
-            <div class="flex flex-col justify-center items-center gap-4 mb-10 p-12 w-full max-w-7xl">
+            <div class="flex flex-col justify-center items-center gap-4 p-12 w-full max-w-7xl">
                 <h1 class="text-5xl font-bold">DAFTAR DOKUMEN KERJA SAMA FAKULTAS MIPA UNIVERSITAS UDAYANA</h1>
                 <p class="text-xl font-semibold">Bagian ini menyediakan daftar dokumen kerja sama Fakultas MIPA Universitas Udayana</p>
             </div>
@@ -378,50 +338,6 @@
 				</div>
             </div>
 
-            {{-- tabel 2 --}}
-            <div class="flex flex-col justify-center items-center gap-4 mb-10 p-12 w-full max-w-7xl">
-                <h1 class="text-5xl font-bold">DAFTAR MITRA KERJA SAMA FAKULTAS MIPA UNIVERSITAS UDAYANA</h1>
-                <p class="text-xl font-semibold">Bagian ini menyediakan daftar mitra kerja sama Fakultas MIPA
-                    Universitas Udayana</p>
-            </div>
-
-            <div class="p-5 overflow-x-auto w-full mb-10">
-                <table class="w-full border-collapse border border-gray-500 text-sm">
-                    <!-- Header -->
-                    <thead class="bg-gray-200 text-center font-semibold">
-                        <tr>
-                            <th class="border border-gray-500 px-3 py-2">No</th>
-                            <th class="border border-gray-500 px-3 py-2">Mitra</th>
-                            <th class="border border-gray-500 px-3 py-2">Alamat</th>
-                            <th class="border border-gray-500 px-3 py-2">Kategori</th>
-                            <th class="border border-gray-500 px-3 py-2">Detail</th>
-                        </tr>
-                    </thead>
-
-                    <!-- Body -->
-                    <tbody>
-                        <tr class="text-center">
-                            <td class="border border-gray-500 px-3 py-2">1</td>
-                            <td class="border border-gray-500 px-3 py-2">University Kemarin Sore</td>
-                            <td class="border border-gray-500 px-3 py-2 text-left">Jl. Kenangan Indah No. 12, Kel.
-                                Sukadamai, Kec. Mentari, Kota Senandika, Provinsi Nusaraya</td>
-                            <td class="border border-gray-500 px-3 py-2">Universitas</td>
-                            <td class="border border-gray-500 px-3 py-2"><button
-                                    class="bg-sky-400 text-white px-3 py-1 rounded-md">☰</button></td>
-                        </tr>
-
-                        <tr class="text-center">
-                            <td class="border border-gray-500 px-3 py-2"></td>
-                            <td class="border border-gray-500 px-3 py-2"></td>
-                            <td class="border border-gray-500 px-3 py-2 text-left"></td>
-                            <td class="border border-gray-500 px-3 py-2"></td>
-                            <td class="border border-gray-500 px-3 py-2"><button
-                                    class="bg-sky-400 text-white px-3 py-1 rounded-md"></button></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
 
             <div class="max-w-7xl mx-auto px-6 py-12">
                 <div class="flex flex-col justify-center items-center gap-4 mb-10 p-12 w-full max-w-7xl">

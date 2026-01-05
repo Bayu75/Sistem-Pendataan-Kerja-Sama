@@ -23,13 +23,134 @@
     </script>
 </head>
 
-<body class="font-poppins bg-[#ffffff] h-[2000px] pt-20">
+<body class="font-poppins bg-[#ffffff] pt-20">
     
     <x-navbar></x-navbar>
-    <h1> </h1>
 
+    <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="flex flex-col justify-center items-center gap-4 p-12 w-full max-w-7xl">
+                    <h1 class="text-5xl font-bold">DOKUMENTASI DAN INFORMASI</h1>
+                    <p class="text-xl font-semibold">Dokumentasi kegiatan terkait perjanjian kerja sama</p>
+                </div>
 
-        <section class="bg-gradient-to-b from-transparent via-transparent to-[rgba(97,96,96)] opacity-100">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article
+                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
+                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
+                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
+                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
+                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
+                            Diselenggarakan</h3>
+
+                        <!-- push button ke bawah -->
+                        <a href="#" class="mt-auto text-left">
+                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
+                        </a>
+                    </article>
+
+                    <article
+                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
+                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
+                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
+                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
+                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
+                            Diselenggarakan</h3>
+
+                        <!-- push button ke bawah -->
+                        <a href="#" class="mt-auto text-left">
+                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
+                        </a>
+                    </article>
+
+                    <article
+                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
+                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
+                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
+                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
+                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
+                            Diselenggarakan</h3>
+
+                        <!-- push button ke bawah -->
+                        <a href="#" class="mt-auto text-left">
+                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
+                        </a>
+                    </article>
+
+                    <article
+                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
+                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
+                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
+                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
+                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
+                            Diselenggarakan</h3>
+
+                        <!-- push button ke bawah -->
+                        <a href="#" class="mt-auto text-left">
+                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
+                        </a>
+                    </article>
+
+                    <article
+                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
+                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
+                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
+                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
+                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
+                            Diselenggarakan</h3>
+
+                        <!-- push button ke bawah -->
+                        <a href="#" class="mt-auto text-left">
+                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
+                        </a>
+                    </article>
+
+                    <article
+                        class="bg-gradient-to-b from-[rgba(230,229,229)] to-[rgba(170,170,170)] rounded-xl p-4 flex flex-col shadow-md">
+                        <img src="../img/Artikel 1.png" class="rounded-lg mb-2 h-40 object-cover">
+                        <p class="text-[15px] text-black mb-3">10 Desember 2025</p>
+                        <h3 class="font-semibold text-xl mb-3 leading-snug text-left">Rapat Pembahasan Kerja Sama
+                            Antara Universitas Udayana dan Universitas Kemarin Sore tentang Webinar Series yang akan
+                            Diselenggarakan</h3>
+
+                        <!-- push button ke bawah -->
+                        <a href="#" class="mt-auto text-left">
+                            <button class="bg-sky-500 text-white text-xl px-3 py-1 rounded">Selengkapnya</button>
+                        </a>
+                    </article>
+
+                </div>
+                
+                <div class="flex justify-center mt-6">
+					<nav class="inline-flex items-center gap-1 text-sm">
+
+						<a href="{{ $dokumen->url(1) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&laquo;</a>
+
+						<a href="{{ $dokumen->previousPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&lsaquo;</a>
+
+						@for ($i = 1; $i <= $dokumen->lastPage(); $i++)
+							@if ($i <= 2 || $i > $dokumen->lastPage()-2 || abs($i - $dokumen->currentPage()) <= 1)
+								<a href="{{ $dokumen->url($i) }}"
+									class="px-3 py-1 border rounded
+									{{ $dokumen->currentPage()==$i ? 'bg-sky-400 text-white' : 'hover:bg-gray-200' }}">
+									{{ $i }}
+								</a>
+							@elseif ($i == 3 || $i == $dokumen->lastPage()-2)
+								<span class="px-2">...</span>
+							@endif
+						@endfor
+
+						<a href="{{ $dokumen->nextPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&rsaquo;</a>
+
+						<a href="{{ $dokumen->url($dokumen->lastPage()) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&raquo;</a>
+					</nav>
+				</div>
+    </div>
+
+    <section class="bg-gradient-to-b from-transparent via-transparent to-[rgba(97,96,96)] opacity-100 mt-20">
         <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- MAP -->
             <div class="w-full h-[300px] lg:h-full rounded-lg overflow-hidden shadow">
@@ -54,7 +175,7 @@
 
                 <p>Email: <a href="mailto:fmipa@unud.ac.id" class="text-blue-700 underline">fmipa@unud.ac.id</a></p>
 
-                <p class="font-semibold">© 2022 USDI – UNIVERSITAS UDAYANA</p>
+                <p class="font-semibold">© 2022 USDI UNIVERSITAS UDAYANA</p>
                 <!-- SOCIAL -->
                 <div>
                     <p class="font-semibold mb-2">Follow Us</p>
