@@ -46,8 +46,7 @@
             @endif
 
             {{-- FORM --}}
-            <form action="{{ route('mitra.store') }}" 
-                method="POST" 
+            <form method="POST" 
                 enctype="multipart/form-data"
                 class="flex gap-12">
 
@@ -142,25 +141,5 @@
             </form>
         </div>
     </div>
-
-    <!-- SCRIPT PREVIEW NAMA FILE -->
-    <script>
-        const dokumenInput = document.getElementById('dokumen');
-        const uploadText = document.getElementById('uploadText');
-        const uploadIcon = document.getElementById('uploadIcon');
-
-        dokumenInput.addEventListener('change', function() {
-            if(this.files && this.files.length > 0) {
-                const fileName = this.files[0].name;
-
-                // Ganti ikon menjadi teks nama dokumen
-                uploadText.textContent = fileName;
-                uploadIcon.style.display = 'none'; // sembunyikan ikon
-            } else {
-                uploadText.textContent = 'Klik untuk upload dokumen';
-                uploadIcon.style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
