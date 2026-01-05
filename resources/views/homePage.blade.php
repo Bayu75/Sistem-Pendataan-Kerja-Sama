@@ -56,25 +56,25 @@
         <div class="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-5 text-center">
             <div class="bg-white rounded-xl shadow-xl flex w-full max-w-6xl p-12 mb-16 border-2 border-black">
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">118</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $mou }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">MoU</p>
-                    <p class="text-sm font-bold">Kerja Sama Internal</p>
+                    <p class="text-sm font-bold">Memorandum of Understanding</p>
                 </div>
 
                 <div class="w-px bg-gray-300 mx-4"></div>
 
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">136</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $moa }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">MoA</p>
-                    <p class="text-sm font-bold">Kerja Sama Eksternal</p>
+                    <p class="text-sm font-bold">Memorandum of Agreement</p>
                 </div>
 
                 <div class="w-px bg-gray-300 mx-4"></div>
 
                 <div class="flex-1 text-center">
-                    <h2 class="text-5xl font-bold pb-2">102</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                    <h2 class="text-5xl font-bold pb-2">{{ $ia }}</h2> {{-- nanti di sini koneksikan dengan data yang bener --}}
                     <p class="text-2xl font-bold">IA</p>
-                    <p class="text-sm font-bold">Kerja Sama Eksternal</p>
+                    <p class="text-sm font-bold">Implementation Arrangement</p>
                 </div>
             </div>
 
@@ -83,14 +83,14 @@
                 <div class="flex justify-evenly gap-25 text-center">
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-cyan-400 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">4</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $kerjasamaEksternal }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kerja Sama Eksternal</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
 
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-lime-400 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">5</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $kerjasamaInternal }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kerja Sama Internal</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
@@ -99,31 +99,165 @@
                 <div class="flex justify-evenly gap-32 text-center">
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">331</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $aktif }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kerja Sama Berlaku</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
 
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">56</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $mendekatiKadaluarsa }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Akan Kadaluarsa</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
 
                     <div class="flex flex-col items-center">
                         <div class="w-12 h-12 rounded-full bg-red-500 shadow-md mb-3"></div>
-                        <h3 class="text-2xl font-bold">407</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
+                        <h3 class="text-2xl font-bold">{{ $kadaluarsa }}</h3> {{-- nanti di sini koneksikan dengan data yang bener --}}
                         <p class="text-sm font-semibold">Kadaluarsa</p>
                         <a href="#" class="text-xs underline">Lihat Selengkapnya</a>
                     </div>
                 </div>
             </div>
 
-            <div
-                class="flex justify-center items-center bg-white border-2 border-black shadow-xl rounded-xl shadow-lg mb-16 p-12 w-full max-w-7xl h-[500px]">
-                <h1 class="font-bold">NANTI DI SINI TAMBAHIN GRAFIK</h1>
-            </div>
+			<div
+				class="flex justify-center items-center bg-white border-2 border-black shadow-xl rounded-xl shadow-lg mb-16 p-12 w-full max-w-7xl h-[500px]">
+
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full h-full">
+					<!-- DONUT -->
+					<div class="flex flex-col justify-center items-center">
+						<h2 class="font-bold text-lg mb-4">Jumlah Dokumen per Jenis</h2>
+						<canvas id="donutChart" class="max-h-[300px]"></canvas>
+					</div>
+
+					<!-- BAR -->
+					<div class="flex flex-col justify-center items-center">
+						<h2 class="font-bold text-lg mb-4">Jumlah Dokumen per Status</h2>
+						<canvas id="barChart" class="max-h-[300px]"></canvas>
+					</div>
+				</div>
+
+				<!-- SCRIPT -->
+				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+				<script>
+					Chart.register(ChartDataLabels);
+
+					/* DATA DARI CONTROLLER */
+					const jenisLabels = {!! json_encode($grafikJenisDokumen->keys()) !!};
+					const jenisData   = {!! json_encode($grafikJenisDokumen->values()) !!};
+
+					const statusLabels = {!! json_encode($grafikStatusDokumen->keys()) !!};
+					const statusData   = {!! json_encode($grafikStatusDokumen->values()) !!};
+
+					/* TOTAL KERJA SAMA */
+					const totalKerjasama = jenisData.reduce((a, b) => a + b, 0);
+
+					/* PLUGIN TEXT TENGAH DONUT */
+					const centerTextPlugin = {
+						id: 'centerText',
+						beforeDraw(chart) {
+							const { ctx, width, height } = chart;
+							ctx.restore();
+
+							const fontSize = (height / 150).toFixed(2);
+							ctx.font = `bold ${fontSize}em Poppins`;
+							ctx.textBaseline = 'middle';
+							ctx.fillStyle = '#000';
+
+							const text = totalKerjasama;
+							const textX = Math.round((width - ctx.measureText(text).width) / 2);
+							const textY = height / 2;
+
+							ctx.fillText(text, textX, textY - 10);
+
+							ctx.font = 'bold 14px Poppins';
+							ctx.fillText('Total', width / 2 - 18, textY + 15);
+
+							ctx.save();
+						}
+					};
+
+					/* DONUT CHART */
+					new Chart(document.getElementById('donutChart'), {
+						type: 'doughnut',
+						plugins: [centerTextPlugin],
+						data: {
+							labels: jenisLabels,
+							datasets: [{
+								data: jenisData,
+								backgroundColor: [
+									'#22c55e',
+									'#3b82f6',
+									'#f97316',
+									'#a855f7'
+								],
+								borderWidth: 2
+							}]
+						},
+						options: {
+							responsive: true,
+							cutout: '65%',
+							plugins: {
+								legend: {
+									position: 'bottom'
+								},
+								datalabels: {
+									color: '#fff',
+									font: {
+										weight: 'bold',
+										size: 16
+									},
+									formatter: (value) => value
+								}
+							}
+						}
+					});
+
+					/* BAR CHART */
+					new Chart(document.getElementById('barChart'), {
+						type: 'bar',
+						data: {
+							labels: statusLabels,
+							datasets: [{
+								data: statusData,
+								backgroundColor: [
+									'#22c55e',
+									'#facc15',
+									'#ef4444'
+								]
+							}]
+						},
+						options: {
+							responsive: true,
+							plugins: {
+								legend: { display: false },
+								datalabels: {
+									anchor: 'end',
+									align: 'top',
+									color: '#000',
+									font: {
+										weight: 'bold',
+										size: 14
+									},
+									formatter: (value) => value
+								}
+							},
+							scales: {
+								y: {
+									beginAtZero: false,
+									ticks: {
+										callback: function(value) {
+											return statusData.includes(value) ? value : '';
+										}
+									}
+								}
+							}
+						}
+					});
+				</script>
+			</div>
 
             {{-- tabel pertama --}}
             <div class="flex flex-col justify-center items-center gap-4 mb-10 p-12 w-full max-w-7xl">
@@ -132,6 +266,29 @@
             </div>
 
             <div class="p-5 overflow-x-auto w-full mb-10">
+				<div class="p-5 overflow-x-auto w-full mb-10">
+
+					{{-- SEARCH & SHOW ENTRIES (TAMBAH DI SINI) --}}
+					<form method="GET" class="flex flex-wrap justify-between items-center mb-4 gap-4">
+						<div class="flex items-center gap-2">
+							<label class="text-sm font-semibold">Show</label>
+							<select name="perPage" onchange="this.form.submit()"
+								class="border border-gray-400 rounded px-2 py-1 text-sm">
+								@foreach ([10,20,50,100] as $size)
+									<option value="{{ $size }}" {{ request('perPage',10)==$size?'selected':'' }}>
+										{{ $size }}
+									</option>
+								@endforeach
+							</select>
+							<span class="text-sm font-semibold">entries</span>
+						</div>
+
+						<div>
+							<input type="text" name="search" value="{{ request('search') }}"
+								placeholder="Search..."
+								class="border border-gray-400 rounded px-3 py-1 text-sm w-60">
+						</div>
+					</form>
                 <table class="w-full border-collapse border border-gray-500 text-sm">
                     <!-- Header -->
                     <thead class="bg-gray-200 text-center font-semibold">
@@ -148,17 +305,58 @@
 
                     <!-- Body -->
                     <tbody>
+                        @forelse ($dokumen as $item)
                         <tr class="text-center">
-                            <td class="border border-gray-500 px-3 py-2">1</td>
-                            <td class="border border-gray-500 px-3 py-2">IA</td>
-                            <td class="border border-gray-500 px-3 py-2 text-left">Implementation Agreement on Adjunct Professor: Webinar Series</td>
-                            <td class="border border-gray-500 px-3 py-2">10<br>Desember<br>2025</td>
-                            <td class="border border-gray-500 px-3 py-2">10<br>Januari<br>2026</td>
-                            <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">Aktif</span></td>
-                            <td class="border border-gray-500 px-3 py-2"><button class="bg-sky-400 text-white px-3 py-1 rounded-md">☰</button></td>
+                            <td class="border border-gray-500 px-3 py-2">{{ $dokumen->firstItem() + $loop->index }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ $item->jenis_dokumen }}</td>
+                            <td class="border border-gray-500 px-3 py-2 text-left">{{ $item->nama_kerjasama }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->waktu_masuk)->translatedFormat('d F Y') }}</td>
+                            <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->tgl_selesai)->translatedFormat('d F Y') }}</td>
+                            <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">{{ $item->status }}</span></td>
+                            <td class="border border-gray-500 px-3 py-2">
+                                <button
+                                    onclick='openModal(@json($item))'
+                                    class="bg-sky-400 text-white px-3 py-1 rounded-md hover:bg-sky-500">
+                                    ☰
+                                </button>                                
+                            </td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center">Data belum tersedia</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
+				{{-- PAGINATION (TAMBAH DI SINI) --}}
+				<div class="flex justify-center mt-6">
+					<nav class="inline-flex items-center gap-1 text-sm">
+
+						<a href="{{ $dokumen->url(1) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&laquo;</a>
+
+						<a href="{{ $dokumen->previousPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&lsaquo;</a>
+
+						@for ($i = 1; $i <= $dokumen->lastPage(); $i++)
+							@if ($i <= 2 || $i > $dokumen->lastPage()-2 || abs($i - $dokumen->currentPage()) <= 1)
+								<a href="{{ $dokumen->url($i) }}"
+									class="px-3 py-1 border rounded
+									{{ $dokumen->currentPage()==$i ? 'bg-sky-400 text-white' : 'hover:bg-gray-200' }}">
+									{{ $i }}
+								</a>
+							@elseif ($i == 3 || $i == $dokumen->lastPage()-2)
+								<span class="px-2">...</span>
+							@endif
+						@endfor
+
+						<a href="{{ $dokumen->nextPageUrl() ?? '#' }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&rsaquo;</a>
+
+						<a href="{{ $dokumen->url($dokumen->lastPage()) }}"
+							class="px-3 py-1 border rounded hover:bg-gray-200">&raquo;</a>
+					</nav>
+				</div>
             </div>
 
             {{-- tabel 2 --}}
@@ -346,6 +544,72 @@
             </div>
         </div>
     </section>
+	<!-- MODAL DETAIL DOKUMEN -->
+	<div id="detailModal" class="fixed inset-0 bg-black/50 hidden justify-center items-center z-50">
+		<div class="bg-white w-full max-w-xl rounded-xl shadow-xl p-6 relative">
+
+			<h2 class="text-xl font-bold text-center mb-4">
+				Rincian Informasi Mitra Kerja Sama
+			</h2>
+
+			<div id="modalContent" class="text-sm space-y-3"></div>
+
+			<div class="text-center mt-6">
+				<button onclick="closeModal()"
+					class="px-6 pyops py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+					Tutup
+				</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		function garis() {
+			return `<hr class="border-gray-300 my-2">`;
+		}
+
+		function openModal(data) {
+			const content = `
+				<div class="font-semibold text-center">${data.nama_kerjasama}</div>
+				${garis()}
+				<div><b>Nama:</b> ${data.nama_mitra}</div>
+				${garis()}
+				<div><b>Program Studi:</b> ${data.program_studi}</div>
+				${garis()}
+				<div><b>Judul Kerja Sama:</b> ${data.nama_kerjasama}</div>
+				${garis()}
+				<div><b>Jenis Dokumen:</b> ${data.jenis_dokumen}</div>
+				${garis()}
+				<div><b>PIC:</b> ${data.pic}</div>
+				${garis()}
+				<div><b>Tanggal Mulai:</b> ${data.waktu_masuk}</div>
+				${garis()}
+				<div><b>Tanggal Berakhir:</b> ${data.tgl_selesai}</div>
+				${garis()}
+				<div><b>Jenis Kerja Sama:</b> ${data.jenis_kerjasama}</div>
+				${garis()}
+				<div><b>Metode Pengiriman Notifikasi:</b> ${data.metode_pengiriman_notifikasi}</div>
+				${garis()}
+				<div><b>Email:</b> ${data.email_user}</div>
+				${garis()}
+				<div>
+					<b>Link Dokumen:</b>
+					<a href="/storage/${data.path}" target="_blank"
+					   class="text-blue-600 underline hover:text-blue-800">
+						Lihat Dokumen
+					</a>
+				</div>
+			`;
+
+			document.getElementById('modalContent').innerHTML = content;
+			document.getElementById('detailModal').classList.remove('hidden');
+			document.getElementById('detailModal').classList.add('flex');
+		}
+
+		function closeModal() {
+			document.getElementById('detailModal').classList.add('hidden');
+			document.getElementById('detailModal').classList.remove('flex');
+		}
+	</script>
 </body>
 
 </html>
