@@ -58,6 +58,8 @@ public function updateDeskripsi(Request $request)
     public function destroy($id)
     {
         DB::table('dokumentasi')->where('id', $id)->delete();
+        DB::table('identitas_mitra')->where('id', $id)->delete();
+        DB::table('kerjasama')->where('id', $id)->delete();
         return back()->with('success', 'Data berhasil dihapus');
     }
 }

@@ -83,10 +83,12 @@ Route::middleware('admin.auth')->group(function () {
         ->name('management.export');
 
     Route::get('/informationAdmin', [InformationController::class, 'index']);
+    
     Route::post(
         '/informationAdmin/update-deskripsi',
         [InformationController::class, 'updateDeskripsi']
-    )->name('admin.information.updateDeskripsi');    
+    )->name('admin.information.updateDeskripsi'); 
+
     Route::delete('/admin/information/{id}', [InformationController::class, 'destroy']);
     
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.admin');

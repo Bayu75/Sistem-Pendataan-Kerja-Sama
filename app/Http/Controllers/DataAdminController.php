@@ -15,6 +15,7 @@ class DataAdminController extends Controller
         $data = DB::table('identitas_mitra')
             ->join('kerjasama', 'kerjasama.id', '=', 'identitas_mitra.id')
             ->leftJoin('dokumentasi', 'dokumentasi.id', '=', 'kerjasama.id')
+            ->where('dokumentasi.status', 'acc')
             ->select(
                 'identitas_mitra.id',
                 'identitas_mitra.nama_mitra',
@@ -69,8 +70,9 @@ $item->sisa_hari = $diff;
 
     public function destroy($id)
     {
-        DB::table('kerjasama')->where('identitas_mitra_id', $id)->delete();
+        DB::table('kerjasama')->where('id', $id)->delete();
         DB::table('identitas_mitra')->where('id', $id)->delete();
+        DB::table('dokumentasi')->where('id', $id)->delete();
 
         return back()->with('success', 'Data berhasil dihapus');
     }
