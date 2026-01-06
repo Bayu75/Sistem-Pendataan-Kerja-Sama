@@ -28,7 +28,7 @@ public function index(Request $request)
             'd.deskripsi',
             'd.status'
         )
-        ->where('d.status', 'acc') // ⚡ hanya ambil yang status acc
+        // ->where('d.status', 'acc') // ⚡ hanya ambil yang status acc
         ->orderBy('k.waktu_masuk', 'desc') // informasi terbaru di atas
         ->paginate($perPage)
         ->withQueryString();

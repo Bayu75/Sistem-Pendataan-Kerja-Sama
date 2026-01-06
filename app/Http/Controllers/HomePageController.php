@@ -84,7 +84,7 @@ class HomePageController extends Controller
             $dokumenAcc = DB::table('dokumentasi as d')
     ->join('kerjasama as k', 'k.id', '=', 'd.id')
     ->join('identitas_mitra as im', 'im.id', '=', 'k.id')
-    ->where('d.status', 'acc')
+    // ->where('d.status', 'acc')
     ->select(
         'd.*',
         'k.nama_kerjasama',
