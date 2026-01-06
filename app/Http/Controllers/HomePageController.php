@@ -77,10 +77,23 @@ class HomePageController extends Controller
                 'im.status',
                 'd.deskripsi'
             )
-            ->where('d.status', 'acc')
             ->orderBy('v.id', 'asc')
             ->paginate($perPage)
             ->withQueryString();
+            
+            $dokumenAcc = DB::table('dokumentasi as d')
+    ->join('kerjasama as k', 'k.id', '=', 'd.id')
+    ->join('identitas_mitra as im', 'im.id', '=', 'k.id')
+    ->where('d.status', 'acc')
+    ->select(
+        'd.*',
+        'k.nama_kerjasama',
+        'im.nama_mitra',
+        'im.program_studi',
+        'im.jenis_dokumen'
+    )
+    ->paginate($perPage);
+
 
         // Grafik
         $grafikJenisDokumen = DB::table('identitas_mitra')
@@ -102,7 +115,8 @@ class HomePageController extends Controller
             'kadaluarsa',
             'dokumen',
             'grafikJenisDokumen',
-            'grafikStatusDokumen'
+            'grafikStatusDokumen',
+            'dokumenAcc'
         ));
     }
 }

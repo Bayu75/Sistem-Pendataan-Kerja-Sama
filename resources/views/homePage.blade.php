@@ -276,11 +276,10 @@
                             <td class="border border-gray-500 px-3 py-2">{{ \Carbon\Carbon::parse($item->tgl_selesai)->translatedFormat('d F Y') }}</td>
                             <td class="border border-gray-500 px-3 py-2"><span class="font-semibold">{{ $item->status }}</span></td>
                             <td class="border border-gray-500 px-3 py-2">
-                                <button
-                                    onclick='openModal(@json($item))'
-                                    class="bg-sky-400 text-white px-3 py-1 rounded-md hover:bg-sky-500">
-                                    ☰
-                                </button>                                
+                                <button onclick='openDetailModal(@json($item))' class="bg-sky-400 text-white px-3 py-1 rounded-md hover:bg-sky-500">
+    ☰
+</button>
+                              
                             </td>
                         </tr>
                         @empty
@@ -344,57 +343,54 @@
                     <p class="text-xl font-semibold">Dokumentasi kegiatan terkait perjanjian kerja sama</p>
                 </div>
 
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-				@foreach ($dokumen as $item)
-				<article class="bg-gradient-to-b from-gray-200 to-gray-400 rounded-xl p-4 flex flex-col shadow-md">
-				    
-				    <img src="{{ asset('img/Artikel 1.png') }}" class="rounded-lg mb-2 h-40 object-cover">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    @foreach ($dokumenAcc as $item)
+        <article class="bg-gradient-to-b from-gray-200 to-gray-400 rounded-xl p-4 flex flex-col shadow-md">
+            <img src="{{ asset('img/Artikel 1.png') }}" class="rounded-lg mb-2 h-40 object-cover">
 
-				    <p class="text-[15px] text-black mb-2">
-				        {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
-				    </p>
+            <p class="text-[15px] text-black mb-2">
+                {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+            </p>
 
-				    <h3 class="font-semibold text-xl mb-3 leading-snug">
-				        {{ $item->nama_kerjasama }}
-				    </h3>
+            <h3 class="font-semibold text-xl mb-3 leading-snug">
+                {{ $item->nama_kerjasama }}
+            </h3>
 
-				    <button
-				        onclick="openModal({{ $item->id }})"
-				        class="mt-auto bg-sky-500 text-white text-lg px-3 py-1 rounded">
-				        Selengkapnya
-				    </button>
-				</article>
-				@endforeach
-				</div>
+            <button
+                onclick="openModal({{ $item->id }})"
+                class="mt-auto bg-sky-500 text-white text-lg px-3 py-1 rounded">
+                Selengkapnya
+            </button>
+        </article>
+    @endforeach
+</div>
+
+{{-- Pagination artikel --}}
+<div class="flex justify-center mt-6">
+    {{ $dokumenAcc->links() }}
+</div>
+
 
 				</div> <!-- penutup grid -->
 
 				{{-- TAMBAHKAN MODAL DI SINI --}}
-				@foreach ($dokumen as $item)
-				<div id="modal-{{ $item->id }}"
-						class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+@foreach ($dokumenAcc as $item)
+    <div id="modal-{{ $item->id }}"
+         class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl w-full max-w-2xl p-6 relative">
+            <button onclick="closeModal({{ $item->id }})"
+                    class="absolute top-3 right-4 text-xl font-bold">&times;</button>
 
-						<div class="bg-white rounded-xl w-full max-w-2xl p-6 relative">
-								<button onclick="closeModal({{ $item->id }})"
-										class="absolute top-3 right-4 text-xl font-bold">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Detail Kerja Sama</h2>
 
-								<h2 class="text-2xl font-bold mb-4">Detail Kerja Sama</h2>
+            <div class="space-y-4 text-sm text-gray-800">
+                <p><span class="font-semibold">Judul:</span><br>{{ $item->nama_kerjasama }}</p>
+                <p><span class="font-semibold">Deskripsi:</span><br>{{ $item->deskripsi ?? 'Tidak ada deskripsi.' }}</p>
+            </div>
+        </div>
+    </div>
+@endforeach
 
-								<div class="space-y-4 text-sm text-gray-800">
-										<p>
-												<span class="font-semibold">Judul:</span><br>
-												{{ $item->nama_kerjasama }}
-										</p>
-
-										<p>
-												<span class="font-semibold">Deskripsi:</span><br>
-												{{ $item->deskripsi ?? 'Tidak ada deskripsi.' }}
-										</p>
-								</div>
-
-						</div>
-				</div>
-				@endforeach
 
                 
                 <div class="flex justify-center mt-6">
@@ -470,71 +466,51 @@
             </div>
         </div>
     </section>
-	<!-- MODAL DETAIL DOKUMEN -->
-	<div id="detailModal" class="fixed inset-0 bg-black/50 hidden justify-center items-center z-50">
-		<div class="bg-white w-full max-w-xl rounded-xl shadow-xl p-6 relative">
+<!-- Modal tunggal untuk tabel -->
+<div id="detailModal" class="fixed inset-0 bg-black/50 hidden justify-center items-center z-50">
+    <div class="bg-white w-full max-w-xl rounded-xl shadow-xl p-6 relative">
+        <h2 class="text-xl font-bold text-center mb-4">Rincian Informasi Mitra Kerja Sama</h2>
+        <div id="modalContent" class="text-sm space-y-3"></div>
+        <div class="text-center mt-6">
+            <button onclick="closeDetailModal()" class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                Tutup
+            </button>
+        </div>
+    </div>
+</div>
 
-			<h2 class="text-xl font-bold text-center mb-4">
-				Rincian Informasi Mitra Kerja Sama
-			</h2>
-
-			<div id="modalContent" class="text-sm space-y-3"></div>
-
-			<div class="text-center mt-6">
-				<button onclick="closeModal()"
-					class="px-6 pyops py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
-					Tutup
-				</button>
-			</div>
-		</div>
-	</div>
 	<script>
 		function garis() {
 			return `<hr class="border-gray-300 my-2">`;
 		}
 
-		function openModal(data) {
-			const content = `
-				<div class="font-semibold text-center">${data.nama_kerjasama}</div>
-				${garis()}
-				<div><b>Nama:</b> ${data.nama_mitra}</div>
-				${garis()}
-				<div><b>Program Studi:</b> ${data.program_studi}</div>
-				${garis()}
-				<div><b>Judul Kerja Sama:</b> ${data.nama_kerjasama}</div>
-				${garis()}
-				<div><b>Jenis Dokumen:</b> ${data.jenis_dokumen}</div>
-				${garis()}
-				<div><b>PIC:</b> ${data.pic}</div>
-				${garis()}
-				<div><b>Tanggal Mulai:</b> ${data.waktu_masuk}</div>
-				${garis()}
-				<div><b>Tanggal Berakhir:</b> ${data.tgl_selesai}</div>
-				${garis()}
-				<div><b>Jenis Kerja Sama:</b> ${data.jenis_kerjasama}</div>
-				${garis()}
-				<div><b>Metode Pengiriman Notifikasi:</b> ${data.metode_pengiriman_notifikasi}</div>
-				${garis()}
-				<div><b>Email:</b> ${data.email_user}</div>
-				${garis()}
-				<div>
-					<b>Link Dokumen:</b>
-					<a href="/storage/${data.path}" target="_blank"
-					   class="text-blue-600 underline hover:text-blue-800">
-						Lihat Dokumen
-					</a>
-				</div>
-			`;
+		// Fungsi khusus untuk tombol di tabel
+function openDetailModal(data) {
+    const content = `
+        <div class="font-semibold text-center">${data.nama_kerjasama}</div>
+        <hr class="border-gray-300 my-2">
+        <div><b>Nama Mitra:</b> ${data.nama_mitra}</div>
+        <hr class="border-gray-300 my-2">
+        <div><b>Program Studi:</b> ${data.program_studi}</div>
+        <hr class="border-gray-300 my-2">
+        <div><b>Judul Kerja Sama:</b> ${data.nama_kerjasama}</div>
+        <hr class="border-gray-300 my-2">
+        <div><b>Jenis Dokumen:</b> ${data.jenis_dokumen}</div>
+        <hr class="border-gray-300 my-2">
+        <div><b>Status:</b> ${data.status}</div>
+        <hr class="border-gray-300 my-2">
+        <div><b>Link Dokumen:</b> <a href="/storage/${data.path}" target="_blank" class="text-blue-600 underline hover:text-blue-800">Lihat Dokumen</a></div>
+    `;
+    document.getElementById('modalContent').innerHTML = content;
+    document.getElementById('detailModal').classList.remove('hidden');
+    document.getElementById('detailModal').classList.add('flex');
+}
 
-			document.getElementById('modalContent').innerHTML = content;
-			document.getElementById('detailModal').classList.remove('hidden');
-			document.getElementById('detailModal').classList.add('flex');
-		}
+function closeDetailModal() {
+    document.getElementById('detailModal').classList.add('hidden');
+    document.getElementById('detailModal').classList.remove('flex');
+}
 
-		function closeModal() {
-			document.getElementById('detailModal').classList.add('hidden');
-			document.getElementById('detailModal').classList.remove('flex');
-		}
 	</script>
         <script>
     function openModal(id) {
