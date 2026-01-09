@@ -28,73 +28,32 @@
     <x-navbar></x-navbar>
     
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-20">
-        <div class="bg-white p-8 shadow-sm border border-gray-100 rounded-sm min-h-[500px]">
+        <div class="bg-white p-8 shadow-sm border border-gray-100 rounded-sm min-h-[200px]">
         
             <h2 class="text-xl font-bold text-gray-800 mb-8 border-b pb-4">
                 Template Kerjasama
             </h2>
 
             <div class="space-y-4">
-                <a href="{{ asset('files/contohTemplate.docx') }}" 
+                <a href="{{ asset('files/Contoh-MoU-Kerjasama-FMIPA UNUD.docx') }}" 
                 download="Template_MoU_Industri.docx" 
                 class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
                     <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoU Industri</span>
+                    <span class="text-[15px] group-hover:underline">Template MoU FMIPA</span>
                 </a>
 
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
+                <a href="{{ asset('files/Contoh-MoA-Kerjasama-FMIPA UNUD.docx') }}" 
+                download="Template_MoA_FMIPA.docx" 
+                class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
                     <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoU Perguruan Tinggi</span>
+                    <span class="text-[15px] group-hover:underline">Template MoA FMIPA</span>
                 </a>
 
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
+                <a href="{{ asset('files/Contoh-IA-Kerjasama-FMIPA UNUD.docx') }}" 
+                download="Template_IA_FMIPA.docx" 
+                class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
                     <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoU Instansi Pemerintahan</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoA KKNT</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoA Magang</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoA Penelitian</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoA Pertukaran Mahasiswa</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoA PKM</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template MoA PLP</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template IA KKNT</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template IA Magang</span>
-                </a>
-
-                <a href="#" class="flex items-center text-[#1e40af] hover:text-blue-800 transition-colors group">
-                    <i class="fa-solid fa-download mr-3 text-sm"></i>
-                    <span class="text-[15px] group-hover:underline">Template IA Penelitian</span>
+                    <span class="text-[15px] group-hover:underline">Template IA FMIPA</span>
                 </a>
             </div>
         </div>
