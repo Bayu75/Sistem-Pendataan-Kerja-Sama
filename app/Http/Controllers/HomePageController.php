@@ -85,9 +85,10 @@ class HomePageController extends Controller
     ->join('kerjasama as k', 'k.id', '=', 'd.id')
     ->join('identitas_mitra as im', 'im.id', '=', 'k.id')
     ->where('d.status', 'acc')
-    ->whereNotNull('d.deskripsi')
+    ->whereRaw("d.deskripsi REGEXP '^[0-9]{2}'")
     ->select(
         'd.*',
+        'd.updated_at',
         'k.nama_kerjasama',
         'im.nama_mitra',
         'im.program_studi',

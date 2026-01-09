@@ -164,6 +164,13 @@ function closeDetail(id) {
 }
 
 function updateStatus(id, status) {
+
+    const message = status === 'acc'
+        ? 'Yakin ingin MENYETUJUI pengajuan ini?'
+        : 'Yakin ingin MENOLAK pengajuan ini?';
+
+    if (!confirm(message)) return;
+
     fetch(`/pengajuan/${id}/status`, {
         method: 'POST',
         headers: {
@@ -173,12 +180,24 @@ function updateStatus(id, status) {
         body: JSON.stringify({ status })
     })
     .then(res => res.json())
-    .then(() => {
-        document.getElementById('status-' + id).innerText = status.toUpperCase();
-        alert('Status berhasil diperbarui');
+    .then(response => {
+        if (response.success) {
+            alert(
+                status === 'acc'
+                    ? 'Notifikasi BERHASIL dikirim'
+                    : 'Pengajuan Kerja Sama Mitra BERHASIL ditolak'
+            );
+            location.reload();
+        } else {
+            alert('Gagal memperbarui status');
+        }
+    })
+    .catch(() => {
+        alert('Terjadi kesalahan server');
     });
 }
 </script>
+
 
 </body>
 </html>

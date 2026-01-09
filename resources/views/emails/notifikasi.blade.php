@@ -9,7 +9,7 @@
         @if($type === 'kadaluarsa')
             Kerja Sama Telah Kadaluarsa
         @else
-            Kerja Sama Telah di Ditearima
+            Kerja Sama Telah di Diterima
         @endif
     </h2>
 

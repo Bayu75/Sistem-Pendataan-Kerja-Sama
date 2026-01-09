@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dokumentasi;
 use App\Models\Kerjasama;
+use App\Models\Fakultas;
+use App\Models\IdentitasMitra;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifikasiKadaluarsa;
+use App\Mail\NotifikasiFakultas;
 use Carbon\Carbon;
 
 class PengajuanController extends Controller
@@ -79,7 +82,6 @@ class PengajuanController extends Controller
                     $tglSelesai = Carbon::parse($kerjasama->tgl_selesai);
                     $h6000 = $tglSelesai->copy()->subDays(6000);
 
-                    // Jika H-6000
                     if ($today->lt($tglSelesai) && $today->gte($h6000)) {
                         Mail::to($kerjasama->email_user)
                             ->send(new NotifikasiKadaluarsa($kerjasama, 'mendekati'));
@@ -90,6 +92,26 @@ class PengajuanController extends Controller
                         Mail::to($kerjasama->email_user)
                             ->send(new NotifikasiKadaluarsa($kerjasama, 'kadaluarsa'));
                     }
+                    
+
+                    // ================= EMAIL KE FAKULTAS =================
+$fakultas = Fakultas::first(); // ambil baris pertama
+$mitra = IdentitasMitra::find($kerjasama->id);
+
+if ($fakultas && $fakultas->email_fakultas && $mitra) {
+
+    // Email mendekati kadaluarsa
+    if ($today->lt($tglSelesai) && $today->gte($h6000)) {
+        Mail::to($fakultas->email_fakultas)
+            ->send(new NotifikasiFakultas($kerjasama, $mitra, 'mendekati'));
+    }
+
+    // Email kadaluarsa
+    if ($today->gte($tglSelesai)) {
+        Mail::to($fakultas->email_fakultas)
+            ->send(new NotifikasiFakultas($kerjasama, $mitra, 'kadaluarsa'));
+    }
+}
                 }
             }
         }

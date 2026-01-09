@@ -16,11 +16,12 @@ public function index(Request $request)
         ->join('kerjasama as k', 'v.id', '=', 'k.id')
         ->leftJoin('dokumentasi as d', 'v.id', '=', 'd.id')
         ->select(
+            'd.*',
             'v.id',
             'im.nama_mitra',
             'im.jenis_dokumen',
             'v.nama_kerjasama',
-            'k.waktu_masuk as created_at',
+            'd.updated_at',
             'k.tgl_selesai',
             'k.jenis_kerjasama',
             'k.email_user',
@@ -29,7 +30,7 @@ public function index(Request $request)
             'd.status'
         )
         ->where('d.status', 'acc')
-        ->whereNotNull('d.deskripsi')
+        ->whereRaw("d.deskripsi REGEXP '^[0-9]{2}'")
         ->orderBy('k.waktu_masuk', 'desc') // informasi terbaru di atas
         ->paginate($perPage)
         ->withQueryString();

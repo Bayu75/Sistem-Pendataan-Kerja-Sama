@@ -43,10 +43,16 @@ public function updateDeskripsi(Request $request)
         'deskripsi'      => 'required|string'
     ]);
 
+    // Format tanggal Indonesia
+    $tanggal = \Carbon\Carbon::now()->translatedFormat('d F Y');
+
+    // Gabungkan: tanggal + enter 2x + deskripsi
+    $deskripsiFinal = $tanggal . "\n\n" . $request->deskripsi;
+
     DB::table('dokumentasi')
         ->where('id', $request->dokumentasi_id)
         ->update([
-            'deskripsi'  => $request->deskripsi,
+            'deskripsi'  => $deskripsiFinal,
             'updated_at' => now()
         ]);
 

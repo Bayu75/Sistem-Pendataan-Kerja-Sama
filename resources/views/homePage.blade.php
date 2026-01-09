@@ -349,7 +349,7 @@
             <img src="{{ asset('img/Artikel 1.png') }}" class="rounded-lg mb-2 h-40 object-cover">
 
             <p class="text-[15px] text-black mb-2">
-                {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+                {{ \Carbon\Carbon::parse($item->updated_at)->format('d F Y') }}
             </p>
 
             <h3 class="font-semibold text-xl mb-3 leading-snug">
@@ -384,8 +384,13 @@
             <h2 class="text-2xl font-bold mb-4">Detail Kerja Sama</h2>
 
             <div class="space-y-4 text-sm text-gray-800">
-                <p><span class="font-semibold">Judul:</span><br>{{ $item->nama_kerjasama }}</p>
-                <p><span class="font-semibold">Deskripsi:</span><br>{{ $item->deskripsi ?? 'Tidak ada deskripsi.' }}</p>
+                <p><span class="font-semibold">Judul:</span><br>{{ $item->nama_kerjasama }}
+                <p>
+    <span class="font-semibold text-justify block">Deskripsi:</span><br>
+    <span class="whitespace-pre-line text-justify block">
+        {{ $item->deskripsi ?? 'Tidak ada deskripsi.' }}
+    </span>
+</p>
             </div>
         </div>
     </div>
