@@ -60,7 +60,7 @@
     </main>
 
 
-        <section class="bg-gradient-to-b from-transparent via-transparent to-[rgba(97,96,96)] opacity-100">
+    <section class="bg-gradient-to-b from-transparent via-transparent to-[rgba(97,96,96)] opacity-100">
         <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- MAP -->
             <div class="w-full h-[300px] lg:h-full rounded-lg overflow-hidden shadow">
